@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GSF OpEx Monitoring Dashboard — MCO Region</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #0f0f0f;
+    --surface: #1c1c1c;
+    --surface2: #252525;
+    --border: #363636;
+    --amber: #d4a04a;
+    --amber-light: #eec47a;
+    --amber-dim: rgba(212,160,74,0.15);
+    --green: #5db87a;
+    --red: #d4605a;
+    --blue: #5a9fd4;
+    --text: #ede8df;
+    --text-muted: #b0a99f;
+    --text-dim: #7a746e;
+    --white: #f5f0e8;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.6; }
+
+  /* HEADER */
+  .dash-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .dash-title-block {}
+  .dash-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.3rem; }
+  .dash-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--white); }
+  .dash-title em { font-style: italic; color: var(--amber-light); }
+  .dash-meta { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
+  .dash-badge { background: var(--surface2); border: 1px solid var(--border); padding: 0.35rem 0.8rem; font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.1em; color: var(--text-muted); }
+  .dash-badge.live { border-color: rgba(93,184,122,0.4); color: var(--green); background: rgba(93,184,122,0.08); }
+
+  /* TABS */
+  .tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); padding: 0 2.5rem; background: var(--surface); overflow-x: auto; }
+  .tab { padding: 0.85rem 1.4rem; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s, border-color 0.2s; }
+  .tab:hover { color: var(--text-muted); }
+  .tab.active { color: var(--amber); border-bottom-color: var(--amber); }
+
+  /* CONTENT */
+  .dash-content { padding: 2rem 2.5rem; max-width: 1300px; margin: 0 auto; }
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  /* KPI ROW */
+  .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; }
+  .kpi-card { background: var(--surface); border: 1px solid var(--border); padding: 1.4rem 1.6rem; position: relative; overflow: hidden; }
+  .kpi-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--amber); opacity: 0.5; }
+  .kpi-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.5rem; }
+  .kpi-value { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--white); line-height: 1; }
+  .kpi-value.up { color: var(--red); }
+  .kpi-value.down { color: var(--green); }
+  .kpi-sub { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.4rem; }
+  .kpi-delta { display: inline-flex; align-items: center; gap: 0.3rem; font-family: 'DM Mono', monospace; font-size: 0.7rem; padding: 0.15rem 0.5rem; margin-top: 0.5rem; }
+  .kpi-delta.over { background: rgba(212,96,90,0.12); color: var(--red); border: 1px solid rgba(212,96,90,0.3); }
+  .kpi-delta.under { background: rgba(93,184,122,0.12); color: var(--green); border: 1px solid rgba(93,184,122,0.3); }
+
+  /* CHART CARDS */
+  .chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+  .chart-row.full { grid-template-columns: 1fr; }
+  .chart-card { background: var(--surface); border: 1px solid var(--border); padding: 1.5rem; }
+  .chart-card-title { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.3rem; }
+  .chart-card-sub { font-size: 0.73rem; color: var(--text-dim); margin-bottom: 1.2rem; }
+  .chart-wrap { position: relative; }
+  .chart-wrap canvas { max-height: 280px; }
+  .chart-wrap.tall canvas { max-height: 380px; }
+
+  /* TABLE */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  .data-table th { text-align: left; padding: 0.6rem 0.8rem; font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); border-bottom: 1px solid var(--border); background: var(--surface2); }
+  .data-table td { padding: 0.65rem 0.8rem; border-bottom: 1px solid rgba(54,54,54,0.5); color: var(--text-muted); }
+  .data-table tr:hover td { background: rgba(212,160,74,0.04); }
+  .data-table td.name { color: var(--text); font-weight: 400; }
+  .pill { display: inline-block; padding: 0.15rem 0.5rem; font-family: 'DM Mono', monospace; font-size: 0.65rem; border-radius: 2px; }
+  .pill.over { background: rgba(212,96,90,0.12); color: var(--red); border: 1px solid rgba(212,96,90,0.25); }
+  .pill.under { background: rgba(93,184,122,0.12); color: var(--green); border: 1px solid rgba(93,184,122,0.25); }
+  .pill.neutral { background: rgba(90,159,212,0.12); color: var(--blue); border: 1px solid rgba(90,159,212,0.25); }
+  .bar-inline { display: inline-block; height: 4px; border-radius: 2px; vertical-align: middle; margin-left: 6px; }
+
+  /* CONTEXT BOX */
+  .context-box { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--amber); padding: 1.2rem 1.5rem; margin-bottom: 1.5rem; }
+  .context-box p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.8; }
+  .context-box strong { color: var(--text); font-weight: 500; }
+
+  /* FOOTER NOTE */
+  .anon-note { margin-top: 2rem; padding: 1rem 1.2rem; background: rgba(212,160,74,0.06); border: 1px solid rgba(212,160,74,0.2); font-size: 0.75rem; color: var(--text-dim); font-family: 'DM Mono', monospace; letter-spacing: 0.04em; }
+
+  @media (max-width: 768px) {
+    .dash-header { padding: 1.2rem 1.2rem; }
+    .tabs { padding: 0 1rem; }
+    .dash-content { padding: 1.2rem; }
+    .kpi-row { grid-template-columns: 1fr 1fr; }
+    .chart-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="dash-header">
+  <div class="dash-title-block">
+    <div class="dash-eyebrow">Finance Controlling · MCO Region · 2019</div>
+    <h1 class="dash-title">GSF OpEx <em>Monitoring</em></h1>
+  </div>
+  <div class="dash-meta">
+    <span class="dash-badge live">● YTD June 2019</span>
+    <span class="dash-badge">15 GSF Functions</span>
+    <span class="dash-badge">Local Currency</span>
+    <span class="dash-badge">Anonymised</span>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab active" onclick="showPanel('overview')">Overview</div>
+  <div class="tab" onclick="showPanel('functions')">By Function</div>
+  <div class="tab" onclick="showPanel('categories')">Cost Categories</div>
+  <div class="tab" onclick="showPanel('smart')">Smart Spending</div>
+</div>
+
+<!-- ═══ OVERVIEW PANEL ═══ -->
+<div class="dash-content">
+<div class="panel active" id="panel-overview">
+
+  <div class="context-box">
+    <p>This dashboard tracks <strong>Global Support Functions (GSF) OpEx</strong> across the MCO Region for FY2019 (YTD June). It was built to monitor 15 support functions against Budget (B19), Forecast (F1), and Actuals (A19), enabling the Controlling team and CFO to identify overspend early and drive the <strong>Smart Spending initiative</strong> launched in Q1 2019.</p>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-label">Total Actual YTD</div>
+      <div class="kpi-value up">3.55M</div>
+      <div class="kpi-sub">Local currency</div>
+      <div class="kpi-delta over">↑ +27.3% vs Forecast</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Total Forecast YTD</div>
+      <div class="kpi-value">2.79M</div>
+      <div class="kpi-sub">F1 version</div>
+      <div class="kpi-delta neutral">Baseline</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Functions Over Forecast</div>
+      <div class="kpi-value up">7</div>
+      <div class="kpi-sub">of 15 GSF functions</div>
+      <div class="kpi-delta over">Requires action</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Functions Under Forecast</div>
+      <div class="kpi-value down">8</div>
+      <div class="kpi-sub">of 15 GSF functions</div>
+      <div class="kpi-delta under">Within target</div>
+    </div>
+  </div>
+
+  <div class="chart-row">
+    <div class="chart-card">
+      <div class="chart-card-title">Budget vs Forecast vs Actual — All Functions</div>
+      <div class="chart-card-sub">YTD June 2019 · Local currency (000s)</div>
+      <div class="chart-wrap tall">
+        <canvas id="chart-overview-bar"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-card-title">Variance vs Forecast (%)</div>
+      <div class="chart-card-sub">Positive = overspend · Negative = underspend</div>
+      <div class="chart-wrap tall">
+        <canvas id="chart-variance"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-row full">
+    <div class="chart-card">
+      <div class="chart-card-title">Spend Distribution by Function</div>
+      <div class="chart-card-sub">Actual YTD as % of total GSF OpEx</div>
+      <div class="chart-wrap" style="max-width:600px;margin:0 auto;">
+        <canvas id="chart-pie"></canvas>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══ FUNCTIONS PANEL ═══ -->
+<div class="panel" id="panel-functions">
+
+  <div class="context-box">
+    <p>Detailed breakdown of all <strong>15 GSF support functions</strong> against Budget, Forecast and Actuals. Functions are colour-coded: <span style="color:var(--red)">red = over forecast</span>, <span style="color:var(--green)">green = under forecast</span>. The <strong>Facilities Management</strong> and <strong>Corporate Affairs</strong> functions show the largest deviations and were escalated to the Steering Committee.</p>
+  </div>
+
+  <div class="chart-row full" style="margin-bottom:1.5rem">
+    <div class="chart-card">
+      <div class="chart-card-title">All Functions — Budget · Forecast · Actual</div>
+      <div class="chart-card-sub">Sorted by actual spend descending · YTD June 2019</div>
+      <div class="chart-wrap" style="height:420px">
+        <canvas id="chart-functions-grouped"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-card-title">Function Detail Table</div>
+    <div class="chart-card-sub" style="margin-bottom:1rem">YTD June 2019 · All values in local currency</div>
+    <table class="data-table" id="functions-table"></table>
+  </div>
+
+</div>
+
+<!-- ═══ CATEGORIES PANEL ═══ -->
+<div class="panel" id="panel-categories">
+
+  <div class="context-box">
+    <p>Monthly OpEx breakdown for the <strong>Facilities Management function</strong> (largest GSF function by spend) across all cost nature codes. The H2 reforecast in July reflects the <strong>new headcount structure and contract renewals</strong> — a key outcome of the Smart Spending action plan. Personnel costs (AA10–AA20) and reinvoiced site costs (SA10) are the primary drivers.</p>
+  </div>
+
+  <div class="chart-row full">
+    <div class="chart-card">
+      <div class="chart-card-title">Monthly Forecast Profile — Facilities Management</div>
+      <div class="chart-card-sub">Top cost categories · Jan–Dec 2019 · Local currency</div>
+      <div class="chart-wrap tall">
+        <canvas id="chart-monthly"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-row">
+    <div class="chart-card">
+      <div class="chart-card-title">Cost Category Breakdown</div>
+      <div class="chart-card-sub">Full year forecast by nature · FM function</div>
+      <div class="chart-wrap">
+        <canvas id="chart-categories-bar"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-card-title">H1 vs H2 Shift</div>
+      <div class="chart-card-sub">Impact of reforecast on monthly run rate</div>
+      <div class="chart-wrap">
+        <canvas id="chart-h1h2"></canvas>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══ SMART SPENDING PANEL ═══ -->
+<div class="panel" id="panel-smart">
+
+  <div class="context-box">
+    <p>In Q1 2019, the Executive Committee launched a <strong>Smart Spending call to action</strong> targeting flat OpEx across 2019–2021. This panel shows the savings targets set across 7 spend categories and the <strong>projected flat OpEx trajectory</strong> for Tunisia and Morocco. The initiative required a full spend mapping across all GSF and commercial functions — led by the Controlling team.</p>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-label">T&E Target Reduction</div>
+      <div class="kpi-value down">-30%</div>
+      <div class="kpi-sub">Travel & Events</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Training Target</div>
+      <div class="kpi-value down">-50%</div>
+      <div class="kpi-sub">All training categories</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Consulting Target</div>
+      <div class="kpi-value down">-50%</div>
+      <div class="kpi-sub">External consulting</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">FM Target</div>
+      <div class="kpi-value down">-10%</div>
+      <div class="kpi-sub">Facilities Management</div>
+    </div>
+  </div>
+
+  <div class="chart-row">
+    <div class="chart-card">
+      <div class="chart-card-title">Tunisia — Flat OpEx Trajectory 2019–2021</div>
+      <div class="chart-card-sub">Personal costs grow +6% / year · All other spend reduces</div>
+      <div class="chart-wrap">
+        <canvas id="chart-flat-tn"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-card-title">Morocco — Flat OpEx Trajectory 2019–2021</div>
+      <div class="chart-card-sub">Personal costs grow +2.5% / year · Savings of -1.5M by 2021</div>
+      <div class="chart-wrap">
+        <canvas id="chart-flat-ma"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-row full">
+    <div class="chart-card">
+      <div class="chart-card-title">2018 Spend Mapping — Tunisia by Function</div>
+      <div class="chart-card-sub">OpEx by business unit · Baseline for Smart Spending initiative</div>
+      <div class="chart-wrap">
+        <canvas id="chart-spend-mapping"></canvas>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="anon-note">⚠ All data anonymised for portfolio use. Company name, employee names, exact entity codes and financial figures have been replaced or scaled. Patterns and proportions are preserved. Original data: Sanofi MCO Region GSF Monitoring Tool, FY2019.</div>
+
+</div><!-- end dash-content -->
+
+<script>
+// ─── COLOUR PALETTE ───────────────────────────────────────────────
+const C = {
+  amber:      'rgba(212,160,74,0.85)',
+  amberBorder:'rgba(212,160,74,1)',
+  amberFill:  'rgba(212,160,74,0.15)',
+  blue:       'rgba(90,159,212,0.8)',
+  blueBorder: 'rgba(90,159,212,1)',
+  green:      'rgba(93,184,122,0.8)',
+  greenBorder:'rgba(93,184,122,1)',
+  red:        'rgba(212,96,90,0.8)',
+  redBorder:  'rgba(212,96,90,1)',
+  muted:      'rgba(176,169,159,0.5)',
+  mutedB:     'rgba(176,169,159,0.8)',
+  surface2:   '#252525',
+  text:       '#ede8df',
+  textMuted:  '#b0a99f',
+  textDim:    '#7a746e',
+  border:     '#363636',
+};
+
+Chart.defaults.color = C.textMuted;
+Chart.defaults.borderColor = C.border;
+Chart.defaults.font.family = "'DM Sans', sans-serif";
+Chart.defaults.font.size = 11;
+
+// ─── DATA ─────────────────────────────────────────────────────────
+const functions = [
+  { name: 'Facilities Management',      budget: 187, forecast: 806, actual: 1214, vPct: 50.5 },
+  { name: 'HR International',           budget: 590, forecast: 567, actual: 568,  vPct: 0.2  },
+  { name: 'Finance GBU',                budget: 472, forecast: 462, actual: 555,  vPct: 20.1 },
+  { name: 'Finance IA',                 budget: 257, forecast: 78,  actual: 70,   vPct: -10.2},
+  { name: 'Purchase to Pay',            budget: 171, forecast: 275, actual: 220,  vPct: -20.0},
+  { name: 'Corporate Affairs',          budget: 114, forecast: 106, actual: 219,  vPct: 107.6},
+  { name: 'Real Estate',                budget: 184, forecast: 185, actual: 264,  vPct: 42.7 },
+  { name: 'HR Employee Experience',     budget: 81,  forecast: 80,  actual: 83,   vPct: 3.6  },
+  { name: 'Local PV',                   budget: 71,  forecast: 60,  actual: 49,   vPct: -18.4},
+  { name: 'Account to Report',          budget: 116, forecast: 112, actual: 69,   vPct: -38.7},
+  { name: 'Legal & Ethics',             budget: 84,  forecast: 79,  actual: 88,   vPct: 10.2 },
+  { name: 'Procurement Regional',       budget: 81,  forecast: 68,  actual: 53,   vPct: -22.6},
+  { name: 'Procurement COGS & CAPEX',   budget: 75,  forecast: 41,  actual: 58,   vPct: 42.2 },
+  { name: 'Customer Invoice to Cash',   budget: 38,  forecast: 39,  actual: 34,   vPct: -13.3},
+  { name: 'Procurement Common Spend',   budget: 43,  forecast: 7,   actual: 12,   vPct: 56.7 },
+];
+
+const sortedByActual = [...functions].sort((a,b) => b.actual - a.actual);
+
+const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+const monthlyCats = {
+  'Salaries':           [9971,9971,9971,9971,9971,9971,18018,18018,18018,18018,18018,18018],
+  'Social Charges':     [6354,6354,6354,6354,6354,6354,3248,3248,3248,3248,3248,3248],
+  'Vehicle Expenses':   [11737,11737,11737,11737,11737,11737,3929,3929,3929,3929,3929,3929],
+  'Energy':             [57561,57561,57561,57561,57561,57561,32439,32439,32439,32439,32439,32439],
+  'Networks & Voice':   [5086,5086,5086,5086,5086,5086,5368,5368,5368,5368,5368,5368],
+  'Site Reinvoicing':   [-86209,-86209,-86209,-86209,-86209,-86209,64543,64543,64543,64543,64543,64543],
+};
+
+// ─── CHART 1: Overview Bar ─────────────────────────────────────────
+new Chart(document.getElementById('chart-overview-bar'), {
+  type: 'bar',
+  data: {
+    labels: sortedByActual.map(f => f.name.length > 20 ? f.name.substring(0,18)+'…' : f.name),
+    datasets: [
+      { label: 'Budget',   data: sortedByActual.map(f=>f.budget),   backgroundColor: C.muted,       borderColor: C.mutedB,      borderWidth: 1 },
+      { label: 'Forecast', data: sortedByActual.map(f=>f.forecast), backgroundColor: C.blue,        borderColor: C.blueBorder,  borderWidth: 1 },
+      { label: 'Actual',   data: sortedByActual.map(f=>f.actual),   backgroundColor: C.amber,       borderColor: C.amberBorder, borderWidth: 1 },
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'top', labels: { color: C.textMuted, boxWidth: 12, padding: 16 } }, tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y.toLocaleString()} k` } } },
+    scales: {
+      x: { ticks: { color: C.textDim, font: { size: 10 }, maxRotation: 35 }, grid: { color: 'rgba(54,54,54,0.4)' } },
+      y: { ticks: { color: C.textDim, callback: v => v+'k' }, grid: { color: 'rgba(54,54,54,0.4)' } }
+    }
+  }
+});
+
+// ─── CHART 2: Variance % ──────────────────────────────────────────
+const sortedByVariance = [...functions].sort((a,b) => b.vPct - a.vPct);
+new Chart(document.getElementById('chart-variance'), {
+  type: 'bar',
+  data: {
+    labels: sortedByVariance.map(f => f.name.length > 20 ? f.name.substring(0,18)+'…' : f.name),
+    datasets: [{
+      label: 'Variance vs Forecast (%)',
+      data: sortedByVariance.map(f => f.vPct),
+      backgroundColor: sortedByVariance.map(f => f.vPct > 0 ? C.red : C.green),
+      borderColor:     sortedByVariance.map(f => f.vPct > 0 ? C.redBorder : C.greenBorder),
+      borderWidth: 1,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.x > 0 ? '+' : ''}${ctx.parsed.x}%` } } },
+    scales: {
+      x: { ticks: { color: C.textDim, callback: v => v+'%' }, grid: { color: 'rgba(54,54,54,0.4)' } },
+      y: { ticks: { color: C.textMuted, font: { size: 10 } }, grid: { color: 'rgba(54,54,54,0.3)' } }
+    }
+  }
+});
+
+// ─── CHART 3: Pie ─────────────────────────────────────────────────
+const pieColors = ['rgba(212,160,74,0.9)','rgba(90,159,212,0.85)','rgba(93,184,122,0.85)','rgba(212,96,90,0.85)','rgba(176,140,212,0.85)','rgba(212,176,90,0.8)','rgba(90,212,176,0.8)','rgba(212,130,90,0.8)','rgba(130,176,212,0.8)','rgba(176,212,130,0.8)','rgba(212,90,140,0.8)','rgba(90,140,212,0.8)','rgba(140,212,90,0.8)','rgba(212,200,90,0.8)','rgba(160,90,212,0.8)'];
+const topFuncs = sortedByActual.slice(0, 8);
+const otherActual = sortedByActual.slice(8).reduce((s,f)=>s+f.actual,0);
+new Chart(document.getElementById('chart-pie'), {
+  type: 'doughnut',
+  data: {
+    labels: [...topFuncs.map(f=>f.name), 'Other Functions'],
+    datasets: [{ data: [...topFuncs.map(f=>f.actual), otherActual], backgroundColor: pieColors, borderColor: '#1c1c1c', borderWidth: 2 }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: true,
+    plugins: {
+      legend: { position: 'right', labels: { color: C.textMuted, boxWidth: 12, padding: 10, font: { size: 10 } } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.parsed.toLocaleString()} k (${Math.round(ctx.parsed / sortedByActual.reduce((s,f)=>s+f.actual,0) * 100)}%)` } }
+    }
+  }
+});
+
+// ─── CHART 4: Functions Grouped ───────────────────────────────────
+new Chart(document.getElementById('chart-functions-grouped'), {
+  type: 'bar',
+  data: {
+    labels: sortedByActual.map(f => f.name),
+    datasets: [
+      { label: 'Budget',   data: sortedByActual.map(f=>f.budget),   backgroundColor: C.muted,  borderColor: C.mutedB,     borderWidth: 1 },
+      { label: 'Forecast', data: sortedByActual.map(f=>f.forecast), backgroundColor: C.blue,   borderColor: C.blueBorder, borderWidth: 1 },
+      { label: 'Actual',   data: sortedByActual.map(f=>f.actual),   backgroundColor: sortedByActual.map(f=>f.vPct>0 ? C.red : C.green), borderColor: sortedByActual.map(f=>f.vPct>0 ? C.redBorder : C.greenBorder), borderWidth: 1 },
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'top', labels: { color: C.textMuted, boxWidth: 12 } }, tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y.toLocaleString()} k` } } },
+    scales: {
+      x: { ticks: { color: C.textDim, font: { size: 10 }, maxRotation: 30 }, grid: { color: 'rgba(54,54,54,0.4)' } },
+      y: { ticks: { color: C.textDim, callback: v => v+'k' }, grid: { color: 'rgba(54,54,54,0.4)' } }
+    }
+  }
+});
+
+// ─── TABLE ────────────────────────────────────────────────────────
+const tbl = document.getElementById('functions-table');
+tbl.innerHTML = `<thead><tr><th>#</th><th>Function</th><th>Budget (k)</th><th>Forecast (k)</th><th>Actual (k)</th><th>Var vs F1</th><th>Status</th></tr></thead>`;
+const tbody = document.createElement('tbody');
+sortedByActual.forEach((f,i) => {
+  const status = Math.abs(f.vPct) < 5 ? `<span class="pill neutral">On Track</span>` : f.vPct > 0 ? `<span class="pill over">Over +${f.vPct}%</span>` : `<span class="pill under">Under ${f.vPct}%</span>`;
+  const barW = Math.min(Math.abs(f.vPct) / 110 * 60, 60);
+  const barColor = f.vPct > 0 ? 'var(--red)' : 'var(--green)';
+  tbody.innerHTML += `<tr><td style="color:var(--text-dim);font-family:'DM Mono',monospace;font-size:0.7rem">${String(i+1).padStart(2,'0')}</td><td class="name">${f.name}</td><td>${f.budget.toLocaleString()}</td><td>${f.forecast.toLocaleString()}</td><td style="color:var(--white);font-weight:500">${f.actual.toLocaleString()}</td><td>${f.vPct > 0 ? '+' : ''}${f.vPct}%<span class="bar-inline" style="width:${barW}px;background:${barColor}"></span></td><td>${status}</td></tr>`;
+});
+tbl.appendChild(tbody);
+
+// ─── CHART 5: Monthly stacked ─────────────────────────────────────
+const catColors = [C.amber, C.blue, C.green, 'rgba(176,140,212,0.8)', 'rgba(212,176,90,0.8)', C.red];
+const catKeys = Object.keys(monthlyCats);
+new Chart(document.getElementById('chart-monthly'), {
+  type: 'line',
+  data: {
+    labels: months,
+    datasets: catKeys.map((k,i) => ({
+      label: k,
+      data: monthlyCats[k],
+      borderColor: catColors[i],
+      backgroundColor: catColors[i].replace('0.8','0.08').replace('0.85','0.08').replace('0.9','0.08'),
+      fill: false,
+      tension: 0.3,
+      borderWidth: 2,
+      pointRadius: 3,
+    }))
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'top', labels: { color: C.textMuted, boxWidth: 12, padding: 10, font: { size: 10 } } } },
+    scales: {
+      x: { ticks: { color: C.textDim }, grid: { color: 'rgba(54,54,54,0.4)' } },
+      y: { ticks: { color: C.textDim, callback: v => v.toLocaleString() }, grid: { color: 'rgba(54,54,54,0.4)' } }
+    }
+  }
+});
+
+// ─── CHART 6: Categories bar ──────────────────────────────────────
+const catFYData = catKeys.map(k => monthlyCats[k].reduce((s,v)=>s+v,0));
+new Chart(document.getElementById('chart-categories-bar'), {
+  type: 'bar',
+  data: {
+    labels: catKeys,
+    datasets: [{ label: 'Full Year Forecast', data: catFYData, backgroundColor: catColors, borderColor: catColors.map(c=>c.replace('0.8','1').replace('0.85','1').replace('0.9','1')), borderWidth: 1 }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { ticks: { color: C.textDim, callback: v => v.toLocaleString() }, grid: { color: 'rgba(54,54,54,0.4)' } },
+      y: { ticks: { color: C.textMuted }, grid: { color: 'rgba(54,54,54,0.3)' } }
+    }
+  }
+});
+
+// ─── CHART 7: H1 vs H2 ───────────────────────────────────────────
+const h1 = catKeys.map(k => Math.round(monthlyCats[k].slice(0,6).reduce((s,v)=>s+v,0)/6));
+const h2 = catKeys.map(k => Math.round(monthlyCats[k].slice(6).reduce((s,v)=>s+v,0)/6));
+new Chart(document.getElementById('chart-h1h2'), {
+  type: 'bar',
+  data: {
+    labels: catKeys,
+    datasets: [
+      { label: 'H1 Avg / month', data: h1, backgroundColor: C.blue, borderColor: C.blueBorder, borderWidth: 1 },
+      { label: 'H2 Avg / month', data: h2, backgroundColor: C.amber, borderColor: C.amberBorder, borderWidth: 1 },
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+    plugins: { legend: { position: 'top', labels: { color: C.textMuted, boxWidth: 12, font: { size: 10 } } } },
+    scales: {
+      x: { ticks: { color: C.textDim, callback: v => v.toLocaleString() }, grid: { color: 'rgba(54,54,54,0.4)' } },
+      y: { ticks: { color: C.textMuted, font: { size: 10 } }, grid: { display: false } }
+    }
+  }
+});
+
+// ─── CHART 8: Flat OpEx Tunisia ───────────────────────────────────
+new Chart(document.getElementById('chart-flat-tn'), {
+  type: 'bar',
+  data: {
+    labels: ['2018 Actual', '2019 Plan', '2020 Plan', '2021 Plan'],
+    datasets: [
+      { label: 'Personnel Costs', data: [6279, 6655, 7055, 7468], backgroundColor: C.amber, borderColor: C.amberBorder, borderWidth: 1, stack: 'a' },
+      { label: 'Other OpEx',      data: [5460, 5083, 4961, 4812], backgroundColor: C.blue,  borderColor: C.blueBorder,  borderWidth: 1, stack: 'a' },
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'top', labels: { color: C.textMuted, boxWidth: 12 } }, tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y.toLocaleString()} k` } } },
+    scales: {
+      x: { stacked: true, ticks: { color: C.textDim }, grid: { color: 'rgba(54,54,54,0.4)' } },
+      y: { stacked: true, ticks: { color: C.textDim, callback: v => v+'k' }, grid: { color: 'rgba(54,54,54,0.4)' } }
+    }
+  }
+});
+
+// ─── CHART 9: Flat OpEx Morocco ───────────────────────────────────
+new Chart(document.getElementById('chart-flat-ma'), {
+  type: 'bar',
+  data: {
+    labels: ['2018 Actual', '2019 Plan', '2020 Plan', '2021 Plan'],
+    datasets: [
+      { label: 'Personnel Costs', data: [11969, 12268, 12575, 12889], backgroundColor: C.amber, borderColor: C.amberBorder, borderWidth: 1, stack: 'a' },
+      { label: 'Other OpEx',      data: [16773, 15565, 14810, 14037], backgroundColor: C.blue,  borderColor: C.blueBorder,  borderWidth: 1, stack: 'a' },
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'top', labels: { color: C.textMuted, boxWidth: 12 } }, tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y.toLocaleString()} k` } } },
+    scales: {
+      x: { stacked: true, ticks: { color: C.textDim }, grid: { color: 'rgba(54,54,54,0.4)' } },
+      y: { stacked: true, ticks: { color: C.textDim, callback: v => v+'k' }, grid: { color: 'rgba(54,54,54,0.4)' } }
+    }
+  }
+});
+
+// ─── CHART 10: Spend Mapping 2018 ────────────────────────────────
+new Chart(document.getElementById('chart-spend-mapping'), {
+  type: 'bar',
+  data: {
+    labels: ['Commercial (CEM)', 'Consumer Healthcare', 'Vaccines', 'Internal Affairs (IA)', 'GSF', 'Other'],
+    datasets: [
+      { label: 'Non-OpEx Spend', data: [2696, 192, 79, 2626, 1338, 0], backgroundColor: C.blue, borderColor: C.blueBorder, borderWidth: 1 },
+      { label: 'OpEx Spend',     data: [5400, 2128, 325, 2208, 1678, 0], backgroundColor: C.amber, borderColor: C.amberBorder, borderWidth: 1 },
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'top', labels: { color: C.textMuted, boxWidth: 12 } }, tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y.toLocaleString()} k` } } },
+    scales: {
+      x: { ticks: { color: C.textDim }, grid: { color: 'rgba(54,54,54,0.4)' } },
+      y: { ticks: { color: C.textDim, callback: v => v+'k' }, grid: { color: 'rgba(54,54,54,0.4)' } }
+    }
+  }
+});
+
+// ─── TAB SWITCHING ────────────────────────────────────────────────
+function showPanel(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

@@ -3,1158 +3,254 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sami Ben Hamida — Finance Transformation Professional</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<title>Sami Ben Hamida — Finance & AI Professional</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0d0f18;
-    --surface: #161926;
-    --surface2: #1e2235;
-    --border: #2a2f45;
-    --amber: #d4a04a;
-    --amber-light: #eec47a;
-    --amber-dim: rgba(212,160,74,0.15);
-    --navy: #1a2a6c;
-    --navy-light: #2a3f8f;
-    --navy-dim: rgba(26,42,108,0.25);
-    --text: #ede8df;
-    --text-muted: #b0a99f;
-    --text-dim: #7a746e;
-    --white: #f5f0e8;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.4rem 4rem;
-    background: rgba(15,15,15,0.97);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    color: var(--amber);
-    letter-spacing: 0.02em;
-    text-decoration: none;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    color: var(--text-muted);
-    text-decoration: none;
-    font-size: 0.8rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    font-weight: 500;
-    transition: color 0.3s;
-  }
-
-  /* ── WORK IN PRACTICE ── */
-  #work { background: var(--surface); border-top: 1px solid var(--border); }
-
-  .case-study {
-    margin-bottom: 4rem;
-    padding-bottom: 4rem;
-    border-bottom: 1px solid var(--border);
-  }
-  .case-study:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-
-  .case-header {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: start;
-    gap: 2rem;
-    margin-bottom: 2rem;
-  }
-
-  .case-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--navy-dim);
-    border: 1px solid rgba(42,63,143,0.4);
-    padding: 0.3rem 0.8rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #7a9fd4;
-    margin-bottom: 0.8rem;
-    margin-right: 0.5rem;
-  }
-
-  .case-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    color: var(--white);
-    line-height: 1.2;
-    margin-bottom: 0.5rem;
-  }
-  .case-title em { font-style: italic; color: var(--amber-light); }
-
-  .case-org {
-    font-size: 0.8rem;
-    color: var(--text-dim);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    font-family: 'DM Mono', monospace;
-  }
-
-  .case-meta-pills {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    flex-shrink: 0;
-  }
-
-  .meta-pill {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    padding: 0.4rem 0.9rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.08em;
-    color: var(--text-muted);
-    white-space: nowrap;
-    text-align: center;
-  }
-
-  .case-body {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-bottom: 2rem;
-  }
-
-  .case-narrative p {
-    font-size: 0.86rem;
-    color: var(--text-muted);
-    line-height: 1.85;
-    margin-bottom: 1rem;
-  }
-  .case-narrative p strong { color: var(--text); font-weight: 500; }
-
-  .case-how {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    padding: 1.4rem;
-  }
-
-  .case-how-title {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--amber);
-    margin-bottom: 1.2rem;
-    padding-bottom: 0.7rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .how-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .how-step {
-    display: flex;
-    gap: 1rem;
-    align-items: flex-start;
-  }
-
-  .how-step-num {
-    flex-shrink: 0;
-    width: 24px; height: 24px;
-    background: var(--amber-dim);
-    border: 1px solid rgba(212,160,74,0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--amber);
-    margin-top: 0.1rem;
-  }
-
-  .how-step-text {
-    font-size: 0.84rem;
-    color: var(--text-muted);
-    line-height: 1.7;
-  }
-  .how-step-text strong { color: var(--text); font-weight: 500; display: block; margin-bottom: 0.2rem; font-size: 0.82rem; }
-
-  .case-outcomes {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.8rem;
-    margin-bottom: 2rem;
-  }
-
-  .outcome-card {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    padding: 0.9rem 1rem;
-    text-align: center;
-    transition: border-color 0.3s;
-  }
-  .outcome-card:hover { border-color: var(--amber); }
-
-  .outcome-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    color: var(--amber);
-    line-height: 1;
-    margin-bottom: 0.25rem;
-  }
-
-  .outcome-label {
-    font-size: 0.68rem;
-    color: var(--text-muted);
-    line-height: 1.4;
-  }
-
-  .case-tools {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .tool-tag {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    padding: 0.3rem 0.7rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--text-muted);
-    letter-spacing: 0.04em;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .tool-tag:hover { border-color: var(--amber); color: var(--amber-light); }
-
-  .dashboard-embed {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    overflow: hidden;
-    position: relative;
-  }
-
-  .embed-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.9rem 1.2rem;
-    background: var(--surface2);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .embed-title {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
-
-  .embed-dot-row { display: flex; gap: 6px; }
-  .embed-dot { width: 10px; height: 10px; border-radius: 50%; }
-  .embed-dot.red { background: #d4605a; }
-  .embed-dot.yellow { background: #d4c04a; }
-  .embed-dot.green { background: #5db87a; }
-
-  .embed-frame {
-    width: 100%;
-    height: 480px;
-    border: none;
-    display: block;
-  }
-
-  @media (max-width: 900px) {
-    .embed-frame { height: 360px; }
-  }
-
-  @media (max-width: 600px) {
-    .embed-frame { height: 300px; }
-  }
-
-  .case-disclaimer {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--text-dim);
-    letter-spacing: 0.04em;
-    padding: 0.8rem 1rem;
-    background: rgba(212,160,74,0.04);
-    border: 1px solid rgba(212,160,74,0.15);
-    margin-top: 1rem;
-  }
-
-  .nav-links a:hover { color: var(--amber); }
-
-  /* ── HERO ── */
-  #hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(135deg, var(--bg) 0%, #0d1228 60%, #0d0f18 100%);
-  }
-
-  .hero-left {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 8rem 4rem 6rem 4rem;
-    position: relative;
-    z-index: 2;
-  }
-
-  .hero-eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--amber);
-    margin-bottom: 1.5rem;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.2s forwards;
-  }
-
-  .hero-name {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 5vw, 5rem);
-    line-height: 1.05;
-    color: var(--white);
-    margin-bottom: 0.4rem;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.4s forwards;
-  }
-
-  .hero-name em {
-    font-style: italic;
-    color: var(--amber-light);
-  }
-
-  .hero-tagline {
-    font-size: 1rem;
-    color: var(--text-muted);
-    margin: 1.4rem 0 2.5rem;
-    max-width: 420px;
-    line-height: 1.8;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.6s forwards;
-  }
-
-  .hero-cta-row {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.8s forwards;
-  }
-
-  .btn-primary {
-    background: var(--amber);
-    color: #0f0f0f;
-    padding: 0.75rem 1.8rem;
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
-    display: inline-block;
-  }
-  .btn-primary:hover { background: var(--amber-light); transform: translateY(-2px); }
-
-  .btn-outline {
-    background: transparent;
-    color: var(--text-muted);
-    padding: 0.75rem 1.8rem;
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: 1px solid var(--border);
-    cursor: pointer;
-    transition: border-color 0.3s, color 0.3s, transform 0.2s;
-    display: inline-block;
-  }
-  .btn-outline:hover { border-color: var(--amber); color: var(--amber); transform: translateY(-2px); }
-
-  .hero-stats {
-    margin-top: 4rem;
-    display: flex;
-    gap: 3rem;
-    opacity: 0;
-    animation: fadeUp 0.8s 1s forwards;
-  }
-
-  .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    color: var(--amber);
-    line-height: 1;
-  }
-
-  .stat-label {
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--text-muted);
-    margin-top: 0.3rem;
-  }
-
-  .hero-right {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  .hero-right::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 55% 45%, rgba(26,42,108,0.4) 0%, rgba(212,160,74,0.06) 60%, transparent 80%);
-  }
-
-  .hero-geometric {
-    position: absolute;
-    right: -80px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 500px;
-    height: 500px;
-    opacity: 0.04;
-  }
-
-  .hero-photo-frame {
-    position: relative;
-    width: 340px;
-    height: 374px;
-    z-index: 2;
-    opacity: 0;
-    animation: fadeIn 1.2s 0.6s forwards;
-    overflow: hidden;
-  }
-
-  .hero-photo-frame::before {
-    content: '';
-    position: absolute;
-    top: -10px; left: -10px;
-    right: 10px; bottom: 10px;
-    border: 1px solid var(--amber);
-    opacity: 0.45;
-    z-index: 4;
-    pointer-events: none;
-  }
-
-  .hero-photo-frame::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 20%;
-    background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
-    z-index: 3;
-    pointer-events: none;
-  }
-
-  .hero-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
-    display: block;
-    filter: contrast(1.04) saturate(0.88) brightness(0.96);
-  }
-
-  .hero-photo-placeholder {
-    width: 100%;
-    height: 100%;
-    background: var(--surface2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 0.5rem;
-    color: var(--text-dim);
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-  }
-
-  .hero-photo-placeholder svg { opacity: 0.3; }
-
-  /* ── SECTION BASE ── */
-  section {
-    padding: 7rem 4rem;
-    position: relative;
-  }
-
-  .section-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .section-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--amber);
-    margin-bottom: 1rem;
-  }
-
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 3.5vw, 3rem);
-    line-height: 1.15;
-    color: var(--white);
-    margin-bottom: 1rem;
-  }
-
-  .section-title em { font-style: italic; color: var(--amber-light); }
-
-  .section-divider {
-    width: 60px;
-    height: 1px;
-    background: var(--amber);
-    margin-bottom: 3.5rem;
-    opacity: 0.6;
-  }
-
-  /* ── ABOUT ── */
-  #about { background: var(--bg); }
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: start;
-  }
-
-  .about-text p {
-    color: var(--text-muted);
-    margin-bottom: 1.4rem;
-    font-size: 0.95rem;
-    line-height: 1.9;
-  }
-
-  .about-text p strong { color: var(--text); font-weight: 500; }
-
-  .values-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-  }
-
-  .value-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 1.5rem;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.3s, transform 0.3s;
-  }
-
-  .value-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 3px; height: 100%;
-    background: var(--amber);
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
-  .value-card:hover { border-color: var(--amber); }
-  .value-card:hover::before { opacity: 1; }
-
-  .value-icon { font-size: 1.4rem; margin-bottom: 0.7rem; }
-
-  .value-title {
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--text);
-    margin-bottom: 0.4rem;
-  }
-
-  .value-text {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-  }
-
-  /* ── VIDEO SECTION ── */
-  #video {
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .video-placeholder {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    aspect-ratio: 16/9;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1.2rem;
-    cursor: pointer;
-    transition: border-color 0.3s;
-    overflow: hidden;
-  }
-
-  .video-placeholder::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at center, rgba(201,147,58,0.05) 0%, transparent 70%);
-  }
-
-  .video-placeholder:hover { border-color: var(--amber); }
-
-  .play-btn {
-    width: 72px; height: 72px;
-    border-radius: 50%;
-    border: 1px solid var(--amber);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--amber);
-    transition: background 0.3s, transform 0.3s;
-    position: relative;
-    z-index: 1;
-  }
-
-  .video-placeholder:hover .play-btn {
-    background: var(--amber-dim);
-    transform: scale(1.08);
-  }
-
-  .video-caption {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    position: relative;
-    z-index: 1;
-  }
-
-  .video-note {
-    text-align: center;
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    margin-top: 1.2rem;
-    font-style: italic;
-  }
-
-  /* ── EXPERIENCE ── */
-  #experience { background: var(--bg); }
-
-  .timeline {
-    position: relative;
-    padding-left: 2rem;
-  }
-
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 8px; bottom: 8px;
-    width: 1px;
-    background: linear-gradient(to bottom, var(--navy-light), var(--amber), transparent);
-    opacity: 0.5;
-  }
-
-  .timeline-item {
-    position: relative;
-    padding: 0 0 3.5rem 2.5rem;
-  }
-
-  .timeline-item.visible { opacity: 1; transform: none; }
-
-  .timeline-dot {
-    position: absolute;
-    left: -6px;
-    top: 8px;
-    width: 12px; height: 12px;
-    border-radius: 50%;
-    background: var(--amber);
-    box-shadow: 0 0 0 3px rgba(201,147,58,0.2);
-  }
-
-  .timeline-period {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    color: var(--amber);
-    text-transform: uppercase;
-    margin-bottom: 0.4rem;
-  }
-
-  .timeline-company {
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 0.3rem;
-  }
-
-  .timeline-role {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    color: var(--white);
-    margin-bottom: 1rem;
-    line-height: 1.3;
-  }
-
-  .timeline-bullets {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-  }
-
-  .timeline-bullets li {
-    font-size: 0.88rem;
-    color: var(--text-muted);
-    line-height: 1.7;
-    padding-left: 1.2rem;
-    position: relative;
-  }
-
-  .timeline-bullets li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: var(--amber);
-    font-size: 0.8rem;
-  }
-
-  /* ── SKILLS ── */
-  #skills { background: var(--surface); border-top: 1px solid var(--border); }
-
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-  }
-
-  .skill-category {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    padding: 1.8rem;
-    transition: border-color 0.3s;
-  }
-
-  .skill-category:hover { border-color: var(--amber); }
-
-  .skill-cat-title {
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--amber);
-    margin-bottom: 1.2rem;
-    padding-bottom: 0.7rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .skill-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .skill-tag {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    padding: 0.3rem 0.7rem;
-    font-size: 0.74rem;
-    color: var(--text-muted);
-    font-family: 'DM Mono', monospace;
-    letter-spacing: 0.04em;
-    transition: background 0.2s, color 0.2s, border-color 0.2s;
-  }
-
-  .skill-tag:hover { background: var(--amber-dim); color: var(--amber-light); border-color: var(--amber); }
-
-  /* ── EDUCATION ── */
-  #education { background: var(--bg); }
-
-  .edu-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-  }
-
-  .edu-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.3s, transform 0.3s;
-  }
-
-  .edu-card::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(to right, var(--amber), transparent);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s;
-  }
-
-  .edu-card:hover { border-color: var(--amber); }
-  .edu-card:hover::after { transform: scaleX(1); }
-
-  .edu-year {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--amber);
-    letter-spacing: 0.12em;
-    margin-bottom: 0.8rem;
-  }
-
-  .edu-degree {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.05rem;
-    color: var(--white);
-    margin-bottom: 0.4rem;
-    line-height: 1.3;
-  }
-
-  .edu-institution {
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 1rem;
-  }
-
-  .edu-desc {
-    font-size: 0.82rem;
-    color: var(--text-muted);
-    line-height: 1.7;
-  }
-
-  /* ── VOLUNTEERING ── */
-  #volunteering {
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-  }
-
-  .vol-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
-  }
-
-  .vol-quote {
-    border-left: 2px solid var(--amber);
-    padding-left: 1.8rem;
-    margin-bottom: 2rem;
-  }
-
-  .vol-quote p {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.15rem;
-    font-style: italic;
-    color: var(--text);
-    line-height: 1.7;
-  }
-
-  .vol-body p {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    line-height: 1.9;
-    margin-bottom: 1.2rem;
-  }
-
-  .vol-activities {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .vol-activities li {
-    display: flex;
-    gap: 1rem;
-    align-items: flex-start;
-  }
-
-  .vol-badge {
-    flex-shrink: 0;
-    background: var(--amber-dim);
-    border: 1px solid rgba(201,147,58,0.25);
-    padding: 0.25rem 0.6rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    color: var(--amber);
-    text-transform: uppercase;
-    margin-top: 0.1rem;
-  }
-
-  .vol-activities li p {
-    font-size: 0.88rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-  }
-
-  .vol-activities li strong {
-    display: block;
-    font-size: 0.82rem;
-    color: var(--text);
-    font-weight: 500;
-    margin-bottom: 0.2rem;
-  }
-
-  /* ── CONTACT FOOTER ── */
-  #contact {
-    background: var(--bg);
-    border-top: 1px solid var(--border);
-    padding: 5rem 4rem;
-  }
-
-  .contact-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-  }
-
-  .contact-heading {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
-    color: var(--white);
-    line-height: 1.2;
-    margin-bottom: 1rem;
-  }
-
-  .contact-heading em { font-style: italic; color: var(--amber-light); }
-
-  .contact-sub {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    line-height: 1.8;
-    margin-bottom: 2rem;
-  }
-
-  .contact-links {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .contact-link {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    text-decoration: none;
-    color: var(--text-muted);
-    font-size: 0.88rem;
-    padding: 1rem 1.2rem;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    transition: border-color 0.3s, color 0.3s, background 0.3s;
-  }
-
-  .contact-link:hover {
-    border-color: var(--amber);
-    color: var(--amber-light);
-    background: var(--amber-dim);
-  }
-
-  .contact-link-icon {
-    width: 32px; height: 32px;
-    border-radius: 50%;
-    background: var(--surface2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-size: 0.9rem;
-  }
-
-  .contact-link-label {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--text-muted);
-    display: block;
-    margin-bottom: 0.1rem;
-  }
-
-  .contact-link-val {
-    font-size: 0.88rem;
-    color: inherit;
-  }
-
-  footer {
-    background: var(--bg);
-    border-top: 1px solid var(--border);
-    padding: 1.5rem 4rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  footer p {
-    font-size: 0.72rem;
-    color: var(--text-muted);
-    font-family: 'DM Mono', monospace;
-    letter-spacing: 0.06em;
-  }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  .fade-up {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    will-change: opacity, transform;
-  }
-
-  .fade-up.visible {
-    opacity: 1;
-    transform: translateY(0);
-    will-change: auto;
-  }
-
-  /* ── RESPONSIVE ── */
-
-  /* Laptop (≤1200px) */
-  @media (max-width: 1200px) {
-    section { padding: 5rem 3rem; }
-    .case-body { gap: 1.5rem; }
-    .case-outcomes { grid-template-columns: repeat(2, 1fr); }
-    .edu-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  /* Tablet (≤900px) */
-  @media (max-width: 900px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { gap: 1rem; }
-    .nav-links a { font-size: 0.7rem; letter-spacing: 0.08em; }
-    section { padding: 4rem 1.5rem; }
-    #hero { grid-template-columns: 1fr; grid-template-rows: auto auto; }
-    .hero-right {
-      display: flex;
-      justify-content: center;
-      padding: 5rem 1.5rem 0;
-      order: -1;
-    }
-    .hero-photo-frame {
-      width: 180px;
-      height: 198px;
-      opacity: 1 !important;
-      animation: none !important;
-    }
-    .hero-left { padding: 2rem 1.5rem 3rem; }
-    .hero-stats { gap: 1.5rem; }
-    .about-grid, .vol-grid, .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
-    .skills-grid { grid-template-columns: 1fr 1fr; }
-    .edu-grid { grid-template-columns: 1fr 1fr; }
-    .values-grid { grid-template-columns: 1fr 1fr; }
-    .case-body { grid-template-columns: 1fr; gap: 1.5rem; }
-    .case-header { grid-template-columns: 1fr; }
-    .case-meta-pills { flex-direction: row; flex-wrap: wrap; }
-    .case-outcomes { grid-template-columns: repeat(2, 1fr); }
-    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
-  }
-
-  /* Phone (≤600px) */
-  @media (max-width: 600px) {
-    nav { padding: 0.9rem 1rem; }
-    .nav-links { gap: 0.6rem; }
-    .nav-links a { font-size: 0.62rem; letter-spacing: 0.04em; }
-    section { padding: 3.5rem 1rem; }
-    #hero { grid-template-columns: 1fr; grid-template-rows: auto auto; }
-    .hero-right {
-      display: flex;
-      justify-content: center;
-      padding: 5.5rem 1rem 0;
-      order: -1;
-    }
-    .hero-photo-frame {
-      width: 140px;
-      height: 154px;
-      opacity: 1 !important;
-      animation: none !important;
-    }
-    .hero-left { padding: 1.5rem 1rem 2.5rem; }
-    .hero-name { font-size: 2.2rem; }
-    .hero-stats { flex-wrap: wrap; gap: 1.2rem; }
-    .stat-num { font-size: 1.5rem; }
-    .section-title { font-size: 1.6rem; }
-    .skills-grid { grid-template-columns: 1fr; }
-    .edu-grid { grid-template-columns: 1fr; }
-    .values-grid { grid-template-columns: 1fr; }
-    .case-outcomes { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
-    .outcome-num { font-size: 1.1rem; }
-    .kpi-row { grid-template-columns: 1fr 1fr; }
-    .timeline { padding-left: 1rem; }
-    .timeline-item { padding-left: 1.5rem; }
-    .case-study { margin-bottom: 2.5rem; padding-bottom: 2.5rem; }
-    .contact-inner { padding: 3rem 1rem; }
-  }
+:root {
+  --bg:#0d0f18; --surface:#161926; --surface2:#1e2235; --border:#2a2f45;
+  --amber:#d4a04a; --amber-light:#eec47a; --amber-dim:rgba(212,160,74,0.14);
+  --navy:#1a2a6c; --navy-dim:rgba(26,42,108,0.22);
+  --text:#ede8df; --text-muted:#b0a99f; --text-dim:#7a746e; --white:#f5f0e8;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 3rem;background:rgba(13,15,24,0.97);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--amber);text-decoration:none;letter-spacing:0.02em}
+.nav-links{display:flex;gap:2rem;list-style:none;flex-wrap:wrap}
+.nav-links a{color:var(--text-muted);text-decoration:none;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;transition:color 0.25s}
+.nav-links a:hover{color:var(--amber)}
+
+/* HERO */
+#hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;background:linear-gradient(135deg,#0d0f18 0%,#0d1228 100%)}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:7rem 3rem 5rem 4rem}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--amber);margin-bottom:1.4rem}
+.hero-name{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,4.5vw,4.5rem);line-height:1.05;color:var(--white);margin-bottom:0.4rem}
+.hero-name em{font-style:italic;color:var(--amber-light)}
+.hero-tagline{font-size:0.92rem;color:var(--text-muted);margin:1.2rem 0 2rem;max-width:420px;line-height:1.85}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3rem}
+.btn-primary{background:var(--amber);color:#0d0f18;padding:0.7rem 1.6rem;font-size:0.78rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;border:none;display:inline-block;transition:opacity 0.2s}
+.btn-primary:hover{opacity:0.85}
+.btn-outline{background:transparent;color:var(--text-muted);padding:0.7rem 1.6rem;font-size:0.78rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;border:1px solid var(--border);display:inline-block;transition:border-color 0.2s,color 0.2s}
+.btn-outline:hover{border-color:var(--amber);color:var(--amber)}
+.hero-stats{display:flex;gap:2.5rem;flex-wrap:wrap}
+.stat-num{font-family:'Playfair Display',serif;font-size:2rem;color:var(--amber);line-height:1}
+.stat-label{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-dim);margin-top:0.25rem}
+
+/* HERO RIGHT — PHOTO */
+.hero-right{position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-right::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 55% 45%,rgba(26,42,108,0.4) 0%,rgba(212,160,74,0.05) 60%,transparent 80%)}
+.hero-photo-frame{position:relative;z-index:2;width:300px;height:329px}
+.hero-photo-frame::before{content:'';position:absolute;top:-8px;left:-8px;right:8px;bottom:8px;border:1px solid var(--amber);opacity:0.45;z-index:4;pointer-events:none}
+.hero-photo{width:300px;height:329px;object-fit:cover;object-position:center 15%;display:block}
+
+/* SECTIONS */
+section{padding:5rem 4rem;position:relative}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-label{font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber);margin-bottom:0.8rem}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.8rem);line-height:1.15;color:var(--white);margin-bottom:0.8rem}
+.section-title em{font-style:italic;color:var(--amber-light)}
+.section-divider{width:50px;height:1px;background:var(--amber);margin-bottom:3rem;opacity:0.6}
+
+/* ABOUT */
+#about{background:var(--bg)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.about-text p{color:var(--text-muted);margin-bottom:1.2rem;font-size:0.92rem;line-height:1.9}
+.about-text p strong{color:var(--text);font-weight:500}
+.values-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.value-card{background:var(--surface);border:1px solid var(--border);padding:1.4rem;transition:border-color 0.3s}
+.value-card:hover{border-color:var(--amber)}
+.value-icon{font-size:1.3rem;margin-bottom:0.6rem}
+.value-title{font-size:0.78rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--text);margin-bottom:0.35rem}
+.value-text{font-size:0.78rem;color:var(--text-muted);line-height:1.6}
+
+/* AI SECTION */
+#ai{background:var(--surface);border-top:1px solid var(--border)}
+.ai-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-bottom:2.5rem}
+.ai-card{background:var(--bg);border:1px solid var(--border);padding:1.6rem;border-top:2px solid var(--amber)}
+.ai-card-icon{font-size:1.5rem;margin-bottom:0.8rem}
+.ai-card-title{font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber);margin-bottom:0.6rem}
+.ai-card-text{font-size:0.82rem;color:var(--text-muted);line-height:1.8}
+.ai-examples{background:var(--bg);border:1px solid var(--border);padding:1.8rem;margin-bottom:2rem}
+.ai-examples-title{font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--amber);margin-bottom:1.4rem;padding-bottom:0.7rem;border-bottom:1px solid var(--border)}
+.ai-examples-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.ai-example{display:flex;gap:1rem;align-items:flex-start}
+.ai-num{flex-shrink:0;width:26px;height:26px;background:var(--amber-dim);border:1px solid rgba(212,160,74,0.3);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--amber)}
+.ai-example-title{font-size:0.82rem;font-weight:500;color:var(--text);margin-bottom:0.25rem}
+.ai-example-text{font-size:0.78rem;color:var(--text-muted);line-height:1.7}
+.ai-example-meta{font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--text-dim)}
+.skill-tags{display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center}
+.skill-tag{background:var(--surface2);border:1px solid var(--border);padding:0.28rem 0.65rem;font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--text-muted);transition:border-color 0.2s,color 0.2s}
+.skill-tag:hover{border-color:var(--amber);color:var(--amber-light)}
+
+
+
+/* EXPERIENCE */
+#experience{background:var(--bg)}
+.experience-intro{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--amber);padding:1rem 1.4rem;margin-bottom:2.5rem;font-size:0.84rem;color:var(--text-muted);line-height:1.85}
+.experience-intro strong{color:var(--text);font-weight:500}
+.timeline{position:relative;padding-left:1.8rem}
+.timeline::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:1px;background:linear-gradient(to bottom,var(--navy-light,#2a3f8f),var(--amber),transparent);opacity:0.4}
+.timeline-item{position:relative;padding:0 0 3rem 2rem}
+.timeline-dot{position:absolute;left:-6px;top:8px;width:12px;height:12px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 3px rgba(212,160,74,0.2)}
+.timeline-period{font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.12em;color:var(--amber);text-transform:uppercase;margin-bottom:0.3rem}
+.timeline-company{font-size:0.73rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.3rem}
+.timeline-role{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--white);margin-bottom:0.9rem;line-height:1.3}
+.timeline-bullets{list-style:none;display:flex;flex-direction:column;gap:0.55rem}
+.timeline-bullets li{font-size:0.86rem;color:var(--text-muted);line-height:1.75;padding-left:1.2rem;position:relative}
+.timeline-bullets li::before{content:'→';position:absolute;left:0;color:var(--amber);font-size:0.78rem}
+.timeline-bullets li strong{color:var(--text);font-weight:500}
+
+/* SKILLS */
+#skills{background:var(--surface);border-top:1px solid var(--border)}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.skill-category{background:var(--bg);border:1px solid var(--border);padding:1.6rem;transition:border-color 0.3s}
+.skill-category:hover{border-color:var(--amber)}
+.skill-cat-title{font-size:0.72rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem;padding-bottom:0.6rem;border-bottom:1px solid var(--border)}
+
+/* EDUCATION */
+#education{background:var(--bg)}
+.edu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}
+.edu-card{background:var(--surface);border:1px solid var(--border);padding:1.8rem;transition:border-color 0.3s;position:relative;overflow:hidden}
+.edu-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--amber),transparent);transform:scaleX(0);transform-origin:left;transition:transform 0.4s}
+.edu-card:hover{border-color:var(--amber)}
+.edu-card:hover::after{transform:scaleX(1)}
+.edu-year{font-family:'DM Mono',monospace;font-size:0.66rem;color:var(--amber);letter-spacing:0.12em;margin-bottom:0.7rem}
+.edu-degree{font-family:'Playfair Display',serif;font-size:1rem;color:var(--white);margin-bottom:0.35rem;line-height:1.3}
+.edu-institution{font-size:0.76rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:0.9rem}
+.edu-desc{font-size:0.8rem;color:var(--text-muted);line-height:1.7}
+
+/* WORK IN PRACTICE */
+#work{background:var(--surface);border-top:1px solid var(--border)}
+.case-study{margin-bottom:4rem;padding-bottom:4rem;border-bottom:1px solid var(--border)}
+.case-study:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.case-header{display:grid;grid-template-columns:1fr auto;align-items:start;gap:2rem;margin-bottom:1.8rem}
+.case-tag{display:inline-flex;align-items:center;gap:0.5rem;background:var(--navy-dim);border:1px solid rgba(42,63,143,0.4);padding:0.28rem 0.75rem;font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:#7a9fd4;margin-bottom:0.7rem;margin-right:0.4rem}
+.case-title{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--white);line-height:1.2;margin-bottom:0.4rem}
+.case-title em{font-style:italic;color:var(--amber-light)}
+.case-org{font-size:0.76rem;color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase;font-family:'DM Mono',monospace}
+.case-meta-pills{display:flex;flex-direction:column;gap:0.45rem;flex-shrink:0}
+.meta-pill{background:var(--surface2);border:1px solid var(--border);padding:0.35rem 0.8rem;font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.07em;color:var(--text-muted);white-space:nowrap;text-align:center}
+.case-body{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-bottom:2rem}
+.case-narrative p{font-size:0.88rem;color:var(--text-muted);line-height:1.9;margin-bottom:1rem}
+.case-narrative p strong{color:var(--text);font-weight:500}
+.case-how{background:var(--bg);border:1px solid var(--border);padding:1.6rem}
+.case-how-title{font-family:'DM Mono',monospace;font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--amber);margin-bottom:1.2rem;padding-bottom:0.6rem;border-bottom:1px solid var(--border)}
+.how-steps{display:flex;flex-direction:column;gap:0.9rem}
+.how-step{display:flex;gap:0.9rem;align-items:flex-start}
+.how-step-num{flex-shrink:0;width:24px;height:24px;background:var(--amber-dim);border:1px solid rgba(212,160,74,0.3);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--amber);margin-top:0.1rem}
+.how-step-text{font-size:0.82rem;color:var(--text-muted);line-height:1.7}
+.how-step-text strong{display:block;font-size:0.8rem;color:var(--text);font-weight:500;margin-bottom:0.2rem}
+.case-outcomes{display:grid;grid-template-columns:repeat(4,1fr);gap:0.9rem;margin-bottom:2rem}
+.outcome-card{background:var(--bg);border:1px solid var(--border);padding:1rem;text-align:center;transition:border-color 0.3s}
+.outcome-card:hover{border-color:var(--amber)}
+.outcome-num{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--amber);line-height:1;margin-bottom:0.25rem}
+.outcome-label{font-size:0.7rem;color:var(--text-muted);line-height:1.4}
+.tool-tag{background:var(--surface2);border:1px solid var(--border);padding:0.28rem 0.65rem;font-family:'DM Mono',monospace;font-size:0.66rem;color:var(--text-muted);display:inline-block;margin:0.2rem 0.2rem 0 0;transition:border-color 0.2s,color 0.2s}
+.tool-tag:hover{border-color:var(--amber);color:var(--amber-light)}
+.dashboard-embed{background:var(--bg);border:1px solid var(--border);overflow:hidden}
+.embed-header{display:flex;justify-content:space-between;align-items:center;padding:0.8rem 1.1rem;background:var(--surface2);border-bottom:1px solid var(--border)}
+.embed-title{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted)}
+.embed-dot-row{display:flex;gap:5px}
+.embed-dot{width:10px;height:10px;border-radius:50%}
+.case-disclaimer{font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--text-dim);letter-spacing:0.04em;padding:0.75rem 1rem;background:rgba(212,160,74,0.04);border:1px solid rgba(212,160,74,0.15);margin-top:0.8rem}
+
+/* VOLUNTEERING */
+#volunteering{background:var(--bg);border-top:1px solid var(--border)}
+.vol-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start}
+.vol-quote{border-left:2px solid var(--amber);padding-left:1.6rem;margin-bottom:1.8rem}
+.vol-quote p{font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;color:var(--text);line-height:1.7}
+.vol-body p{font-size:0.88rem;color:var(--text-muted);line-height:1.9;margin-bottom:1.1rem}
+.vol-activities{list-style:none;display:flex;flex-direction:column;gap:1rem}
+.vol-activities li{display:flex;gap:0.9rem;align-items:flex-start}
+.vol-badge{flex-shrink:0;background:var(--amber-dim);border:1px solid rgba(212,160,74,0.25);padding:0.22rem 0.55rem;font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.08em;color:var(--amber);text-transform:uppercase;margin-top:0.1rem}
+.vol-activities li p{font-size:0.86rem;color:var(--text-muted);line-height:1.6}
+.vol-activities li strong{display:block;font-size:0.8rem;color:var(--text);font-weight:500;margin-bottom:0.15rem}
+
+/* CONTACT */
+#contact{background:var(--surface);border-top:1px solid var(--border)}
+.contact-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.contact-heading{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,2.5vw,2.2rem);color:var(--white);line-height:1.2;margin-bottom:0.9rem}
+.contact-heading em{font-style:italic;color:var(--amber-light)}
+.contact-sub{font-size:0.88rem;color:var(--text-muted);line-height:1.85;margin-bottom:1.8rem}
+.contact-links{display:flex;flex-direction:column;gap:0.9rem}
+.contact-link{display:flex;align-items:center;gap:0.9rem;text-decoration:none;color:var(--text-muted);font-size:0.86rem;padding:0.9rem 1.1rem;border:1px solid var(--border);background:var(--bg);transition:border-color 0.3s,color 0.3s,background 0.3s}
+.contact-link:hover{border-color:var(--amber);color:var(--amber-light);background:var(--amber-dim)}
+.contact-link-icon{width:30px;height:30px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:0.85rem}
+.contact-link-label{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-muted);display:block;margin-bottom:0.1rem}
+.contact-link-val{font-size:0.86rem;color:inherit}
+
+/* FOOTER */
+footer{background:var(--bg);border-top:1px solid var(--border);padding:1.4rem 4rem;display:flex;justify-content:space-between;align-items:center}
+footer p{font-size:0.7rem;color:var(--text-dim);font-family:'DM Mono',monospace;letter-spacing:0.06em}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.hero-eyebrow{animation:fadeUp 0.7s 0.15s both}
+.hero-name{animation:fadeUp 0.7s 0.3s both}
+.hero-tagline{animation:fadeUp 0.7s 0.45s both}
+.hero-cta{animation:fadeUp 0.7s 0.6s both}
+.hero-stats{animation:fadeUp 0.7s 0.75s both}
+.hero-photo-frame{opacity:1}
+.fade-up{opacity:0;transform:translateY(14px);transition:opacity 0.5s ease,transform 0.5s ease;will-change:opacity,transform}
+.fade-up.visible{opacity:1;transform:translateY(0);will-change:auto}
+
+/* ── RESPONSIVE ── */
+/* Laptop ≤1200 */
+@media(max-width:1200px){
+  section{padding:4.5rem 3rem}
+  .case-outcomes{grid-template-columns:repeat(2,1fr)}
+}
+/* Tablet ≤900 */
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{gap:1rem}
+  .nav-links a{font-size:0.68rem}
+  section{padding:4rem 1.8rem}
+  #hero{grid-template-columns:1fr;grid-template-rows:auto auto;min-height:auto}
+  .hero-right{display:flex!important;justify-content:center;align-items:center;padding:5rem 1.5rem 1rem;order:-1}
+  .hero-photo-frame{width:170px!important;height:187px!important;opacity:1!important;animation:none!important}
+  .hero-photo{width:170px!important;height:187px!important}
+  .hero-left{padding:1.5rem 1.8rem 3rem}
+  .about-grid,.vol-grid,.contact-inner{grid-template-columns:1fr;gap:2rem}
+  .skills-grid{grid-template-columns:1fr 1fr}
+  .edu-grid{grid-template-columns:1fr 1fr}
+  .values-grid{grid-template-columns:1fr 1fr}
+  .ai-cards{grid-template-columns:1fr}
+  .ai-examples-grid{grid-template-columns:1fr}
+  .case-body{grid-template-columns:1fr;gap:1.5rem}
+  .case-header{grid-template-columns:1fr}
+  .case-meta-pills{flex-direction:row;flex-wrap:wrap}
+  .case-outcomes{grid-template-columns:repeat(2,1fr)}
+  footer{flex-direction:column;gap:0.4rem;text-align:center;padding:1.2rem}
+}
+/* Phone ≤600 */
+@media(max-width:600px){
+  nav{padding:0.85rem 1rem}
+  .nav-links{gap:0.55rem}
+  .nav-links a{font-size:0.6rem;letter-spacing:0.04em}
+  section{padding:3.5rem 1rem}
+  #hero{grid-template-columns:1fr;min-height:auto}
+  .hero-right{display:flex!important;justify-content:center;align-items:center;padding:4.8rem 1rem 0.8rem;order:-1}
+  .hero-photo-frame{width:130px!important;height:143px!important;opacity:1!important;animation:none!important}
+  .hero-photo{width:130px!important;height:143px!important}
+  .hero-left{padding:1rem 1rem 2.5rem}
+  .hero-name{font-size:2.2rem}
+  .hero-stats{gap:1.2rem;flex-wrap:wrap}
+  .stat-num{font-size:1.6rem}
+  .section-title{font-size:1.5rem}
+  .skills-grid,.edu-grid,.values-grid,.ai-cards{grid-template-columns:1fr}
+  .ai-examples-grid{grid-template-columns:1fr}
+  .case-outcomes{grid-template-columns:1fr 1fr;gap:0.5rem}
+  .outcome-num{font-size:1.2rem}
+  .timeline{padding-left:0.8rem}
+  .timeline-item{padding-left:1.4rem}
+  .contact-inner{grid-template-columns:1fr;gap:2rem}
+  footer{flex-direction:column;gap:0.4rem;padding:1rem;text-align:center}
+}
 </style>
 </head>
 <body>
@@ -1165,9 +261,8 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#ai">AI & Finance</a></li>
-    <li><a href="#video">Intro</a></li>
     <li><a href="#experience">Experience</a></li>
-    <li><a href="#work">Work in Practice</a></li>
+    <li><a href="#work">Work</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#education">Education</a></li>
     <li><a href="#volunteering">Volunteering</a></li>
@@ -1180,36 +275,18 @@
   <div class="hero-left">
     <p class="hero-eyebrow">Finance Transformation · AI Integration · Oxford Brookes</p>
     <h1 class="hero-name">Sami<br><em>Ben Hamida</em></h1>
-    <p class="hero-tagline">I help organisations transform their finance functions through AI — designing the strategy, facilitating the integration, and leading the people through the change. 15+ years of hands-on finance leadership, now applied at the intersection of human expertise and intelligent automation.</p>
-    <div class="hero-cta-row">
+    <p class="hero-tagline">15 years building finance functions across Tunisia, Libya and Morocco — reporting to corporate France. Now based in Oxford, UK, applying that experience to AI-enabled Finance Transformation.</p>
+    <div class="hero-cta">
       <a href="#experience" class="btn-primary">View Experience</a>
       <a href="#contact" class="btn-outline">Get in Touch</a>
     </div>
     <div class="hero-stats">
-      <div>
-        <div class="stat-num">15+</div>
-        <div class="stat-label">Years in Finance</div>
-      </div>
-      <div>
-        <div class="stat-num">AI+</div>
-        <div class="stat-label">Finance Integration</div>
-      </div>
-      <div>
-        <div class="stat-num">6</div>
-        <div class="stat-label">ERP / EPM Systems</div>
-      </div>
+      <div><div class="stat-num">15+</div><div class="stat-label">Years in Finance</div></div>
+      <div><div class="stat-num">AI+</div><div class="stat-label">Finance Integration</div></div>
+      <div><div class="stat-num">6</div><div class="stat-label">ERP / EPM Systems</div></div>
     </div>
   </div>
   <div class="hero-right">
-    <svg class="hero-geometric" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="200" cy="200" r="180" stroke="white" stroke-width="0.5"/>
-      <circle cx="200" cy="200" r="120" stroke="white" stroke-width="0.5"/>
-      <circle cx="200" cy="200" r="60" stroke="white" stroke-width="0.5"/>
-      <line x1="20" y1="200" x2="380" y2="200" stroke="white" stroke-width="0.5"/>
-      <line x1="200" y1="20" x2="200" y2="380" stroke="white" stroke-width="0.5"/>
-      <line x1="73" y1="73" x2="327" y2="327" stroke="white" stroke-width="0.5"/>
-      <line x1="327" y1="73" x2="73" y2="327" stroke="white" stroke-width="0.5"/>
-    </svg>
     <div class="hero-photo-frame">
       <img src="data:image/png;base64,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" alt="Sami Ben Hamida" class="hero-photo">
     </div>
@@ -1224,109 +301,43 @@
     <div class="section-divider fade-up"></div>
     <div class="about-grid">
       <div class="about-text fade-up">
-        <p>I'm Sami Ben Hamida — a <strong>Finance Transformation & AI Integration specialist</strong> with over 15 years of experience in multinational pharmaceutical and services environments spanning <strong>Tunisia, Libya, Morocco, Jordan, UAE and beyond</strong>, now based in the UK.</p>
-        <p>My work sits at the intersection of finance expertise and intelligent technology. I don't just advise on AI — I <strong>design the integration architecture, facilitate adoption across finance teams, and ensure AI tools are embedded into real workflows</strong> rather than sitting unused in a pilot. I've been doing this before it was called AI: building self-service analytics portals, implementing driver-based EPM platforms, automating reporting cycles, and connecting data models across SAP, TM1 and HFM.</p>
-        <p>My MSc in Management & Business Analytics (Oxford Brookes, Merit) formalised what I had already been practising: using <strong>Python, machine learning and predictive analytics</strong> to solve finance problems that spreadsheets can't. I now apply that capability to help finance functions move from manual, reactive reporting to intelligent, forward-looking decision support.</p>
-        <p>I also lead the human side of transformation. AI adoption fails when it's treated as a technology project. I bring the <strong>change management, stakeholder engagement and cultural shift</strong> that turns a tool deployment into a lasting capability — having led that process across 80+ stakeholders in complex, multi-country environments.</p>
+        <p>I'm Sami Ben Hamida — a <strong>Finance Transformation & AI Integration specialist</strong> based in Oxford, UK. I spent 15 years building and leading finance functions across <strong>Tunisia, Libya and Morocco</strong>, working directly with and reporting to <strong>corporate headquarters in France</strong>.</p>
+        <p>My career spans the full finance spectrum: <strong>FP&A, financial controlling, business partnering, pricing strategy, ERP implementation and finance transformation</strong>. I've built finance functions from scratch, led restructuring programmes, and delivered ERP and EPM implementations as the bridge between local operations and corporate France.</p>
+        <p>More recently I've been applying <strong>AI and data analytics</strong> to automate reporting cycles, improve forecasting accuracy, and help finance teams spend less time on numbers and more time on decisions. My MSc in Management & Business Analytics from Oxford Brookes (Merit) formalised that with Python, machine learning and predictive analytics.</p>
+        <p>I believe great finance work is never just about the numbers. It's about the people, the processes, and the trust you build with the business — across Tunisia, Libya, Morocco and France.</p>
       </div>
       <div class="values-grid fade-up">
-        <div class="value-card">
-          <div class="value-icon">🤖</div>
-          <div class="value-title">AI as an Enabler</div>
-          <div class="value-text">AI doesn't replace finance expertise — it amplifies it. My role is to design integrations that make finance teams faster, smarter and more strategic.</div>
-        </div>
-        <div class="value-card">
-          <div class="value-icon">🔗</div>
-          <div class="value-title">Integration First</div>
-          <div class="value-text">Real transformation means AI embedded in daily workflows — not a pilot that never scales. I bridge the gap between what's technically possible and what teams will actually use.</div>
-        </div>
-        <div class="value-card">
-          <div class="value-icon">🤝</div>
-          <div class="value-title">People-Led Change</div>
-          <div class="value-text">Technology succeeds when people trust it. I lead the human side of AI adoption — training, governance, and building the confidence to let go of old ways of working.</div>
-        </div>
-        <div class="value-card">
-          <div class="value-icon">🧭</div>
-          <div class="value-title">Integrity & Trust</div>
-          <div class="value-text">In a world of AI hype, I stay grounded in what delivers real value. Credibility is built through honest assessment and consistent delivery.</div>
-        </div>
+        <div class="value-card"><div class="value-icon">🤖</div><div class="value-title">AI as Enabler</div><div class="value-text">AI amplifies finance expertise. I design integrations that make teams faster, smarter and more strategic.</div></div>
+        <div class="value-card"><div class="value-icon">🔗</div><div class="value-title">Integration First</div><div class="value-text">Real transformation means AI embedded in daily workflows — not a pilot that never scales.</div></div>
+        <div class="value-card"><div class="value-icon">🤝</div><div class="value-title">People-Led Change</div><div class="value-text">Technology succeeds when people trust it. I lead the human side of AI adoption.</div></div>
+        <div class="value-card"><div class="value-icon">🧭</div><div class="value-title">Integrity & Trust</div><div class="value-text">In a world of AI hype, I stay grounded in what delivers real value.</div></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- AI & FINANCE -->
-<section id="ai" style="background: var(--surface); border-top: 1px solid var(--border);">
+<section id="ai">
   <div class="section-inner">
     <p class="section-label fade-up">02 — AI & Finance Integration</p>
     <h2 class="section-title fade-up">Making AI work<br><em>inside finance</em></h2>
     <div class="section-divider fade-up"></div>
-
-    <div class="fade-up" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;margin-bottom:3rem;">
-
-      <div style="background:var(--bg);border:1px solid var(--border);padding:1.8rem;border-top:2px solid var(--amber);">
-        <div style="font-size:1.6rem;margin-bottom:1rem;">🧠</div>
-        <div style="font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber);margin-bottom:0.7rem;">AI Strategy & Roadmap</div>
-        <p style="font-size:0.84rem;color:var(--text-muted);line-height:1.8;">I help finance leaders build a credible AI roadmap — identifying which processes are ready for automation, which need restructuring first, and how to sequence the transformation without disrupting operations.</p>
-      </div>
-
-      <div style="background:var(--bg);border:1px solid var(--border);padding:1.8rem;border-top:2px solid var(--amber);">
-        <div style="font-size:1.6rem;margin-bottom:1rem;">⚙️</div>
-        <div style="font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber);margin-bottom:0.7rem;">Integration & Implementation</div>
-        <p style="font-size:0.84rem;color:var(--text-muted);line-height:1.8;">From EPM automation and AI-enhanced forecasting to LLM-assisted reporting and anomaly detection — I design and facilitate the technical integration between AI tools and existing ERP/EPM ecosystems (SAP, TM1, HFM, Power BI).</p>
-      </div>
-
-      <div style="background:var(--bg);border:1px solid var(--border);padding:1.8rem;border-top:2px solid var(--amber);">
-        <div style="font-size:1.6rem;margin-bottom:1rem;">🎯</div>
-        <div style="font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber);margin-bottom:0.7rem;">Adoption & Change</div>
-        <p style="font-size:0.84rem;color:var(--text-muted);line-height:1.8;">AI tools fail when finance teams don't trust or use them. I lead the adoption layer: training, governance frameworks, new ways of working, and the cultural shift from manual control to intelligent oversight.</p>
-      </div>
-
+    <div class="ai-cards fade-up">
+      <div class="ai-card"><div class="ai-card-icon">🧠</div><div class="ai-card-title">AI Strategy & Roadmap</div><div class="ai-card-text">I help finance leaders build a credible AI roadmap — identifying which processes are ready for automation, which need restructuring first, and how to sequence transformation without disrupting operations.</div></div>
+      <div class="ai-card"><div class="ai-card-icon">⚙️</div><div class="ai-card-title">Integration & Implementation</div><div class="ai-card-text">From EPM automation to AI-enhanced forecasting and LLM-assisted reporting — I design and facilitate technical integration between AI tools and existing ERP/EPM ecosystems.</div></div>
+      <div class="ai-card"><div class="ai-card-icon">🎯</div><div class="ai-card-title">Adoption & Change</div><div class="ai-card-text">AI fails when finance teams don't trust it. I lead the adoption layer: training, governance frameworks, and the cultural shift from manual control to intelligent oversight.</div></div>
     </div>
-
-    <!-- AI USE CASES FROM REAL EXPERIENCE -->
-    <div class="fade-up" style="background:var(--bg);border:1px solid var(--border);padding:2rem;margin-bottom:2rem;">
-      <div style="font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--amber);margin-bottom:1.5rem;padding-bottom:0.7rem;border-bottom:1px solid var(--border);">Real Applications — From My Own Career</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
-
-        <div style="display:flex;gap:1rem;align-items:flex-start;">
-          <div style="flex-shrink:0;width:28px;height:28px;background:var(--amber-dim);border:1px solid rgba(212,160,74,0.3);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--amber);">01</div>
-          <div>
-            <div style="font-size:0.82rem;font-weight:500;color:var(--text);margin-bottom:0.3rem;">VBA Self-Service Analytics Portal</div>
-            <p style="font-size:0.8rem;color:var(--text-muted);line-height:1.7;">Built an automated self-service reporting portal enabling 80+ process owners to access real-time performance data without controller involvement — a 6-day reduction in the monthly reporting cycle. <span style="color:var(--text-dim);font-family:'DM Mono',monospace;font-size:0.68rem;">· Sanofi MCO, 2019</span></p>
-          </div>
-        </div>
-
-        <div style="display:flex;gap:1rem;align-items:flex-start;">
-          <div style="flex-shrink:0;width:28px;height:28px;background:var(--amber-dim);border:1px solid rgba(212,160,74,0.3);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--amber);">02</div>
-          <div>
-            <div style="font-size:0.82rem;font-weight:500;color:var(--text);margin-bottom:0.3rem;">Driver-Based Planning Engine (TM1)</div>
-            <p style="font-size:0.8rem;color:var(--text-muted);line-height:1.7;">Replaced 3-month manual Excel budgeting with an AI-assisted driver-based planning model in IBM Cognos TM1 — reducing the cycle to 3 weeks and eliminating reconciliation errors across 120 users. <span style="color:var(--text-dim);font-family:'DM Mono',monospace;font-size:0.68rem;">· Sanofi Libya, 2015</span></p>
-          </div>
-        </div>
-
-        <div style="display:flex;gap:1rem;align-items:flex-start;">
-          <div style="flex-shrink:0;width:28px;height:28px;background:var(--amber-dim);border:1px solid rgba(212,160,74,0.3);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--amber);">03</div>
-          <div>
-            <div style="font-size:0.82rem;font-weight:500;color:var(--text);margin-bottom:0.3rem;">AI-Assisted Portfolio Analytics (MSc)</div>
-            <p style="font-size:0.8rem;color:var(--text-muted);line-height:1.7;">Applied Python, machine learning and predictive modelling to financial planning optimisation as part of my Oxford Brookes MSc — building the analytical foundations for AI-enhanced FP&A and performance forecasting. <span style="color:var(--text-dim);font-family:'DM Mono',monospace;font-size:0.68rem;">· Oxford Brookes, 2025</span></p>
-          </div>
-        </div>
-
-        <div style="display:flex;gap:1rem;align-items:flex-start;">
-          <div style="flex-shrink:0;width:28px;height:28px;background:var(--amber-dim);border:1px solid rgba(212,160,74,0.3);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--amber);">04</div>
-          <div>
-            <div style="font-size:0.82rem;font-weight:500;color:var(--text);margin-bottom:0.3rem;">GSF Monitoring Tool — HFM Data Integration</div>
-            <p style="font-size:0.8rem;color:var(--text-muted);line-height:1.7;">Designed a multi-entity OpEx monitoring system with live HFM CUBE data feeds, automated variance logic and role-based access — giving EPM-level intelligence within the existing tech stack across 15 functions. <span style="color:var(--text-dim);font-family:'DM Mono',monospace;font-size:0.68rem;">· Sanofi MCO, 2019</span></p>
-          </div>
-        </div>
-
+    <div class="ai-examples fade-up">
+      <div class="ai-examples-title">Real Applications — From My Career</div>
+      <div class="ai-examples-grid">
+        <div class="ai-example"><div class="ai-num">01</div><div><div class="ai-example-title">VBA Self-Service Analytics Portal</div><div class="ai-example-text">Automated reporting portal enabling 80+ process owners to access real-time performance data — 6-day reduction in monthly reporting cycle. <span class="ai-example-meta">· Sanofi MCO, 2019</span></div></div></div>
+        <div class="ai-example"><div class="ai-num">02</div><div><div class="ai-example-title">IBM Cognos TM1 — Driver-Based Planning</div><div class="ai-example-text">Replaced 3-month manual Excel budgeting with driver-based planning model for 120 users — reduced cycle to 3 weeks. <span class="ai-example-meta">· Sanofi Libya, 2015</span></div></div></div>
+        <div class="ai-example"><div class="ai-num">03</div><div><div class="ai-example-title">AI-Assisted Portfolio Analytics</div><div class="ai-example-text">Applied Python and ML to financial planning optimisation — building AI-enhanced FP&A and forecasting foundations. <span class="ai-example-meta">· Oxford Brookes, 2025</span></div></div></div>
+        <div class="ai-example"><div class="ai-num">04</div><div><div class="ai-example-title">GSF Monitoring — HFM Data Integration</div><div class="ai-example-text">Multi-entity OpEx monitoring with live HFM CUBE data feeds across 15 functions — EPM-level intelligence within existing stack. <span class="ai-example-meta">· Sanofi MCO, 2019</span></div></div></div>
       </div>
     </div>
-
-    <!-- AI STACK -->
-    <div class="fade-up" style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;">
-      <span style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);margin-right:0.5rem;">AI & Data Stack:</span>
+    <div class="skill-tags fade-up">
+      <span style="font-family:'DM Mono',monospace;font-size:0.63rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);margin-right:0.5rem">AI & Data Stack:</span>
       <span class="skill-tag">Python · pandas · scikit-learn</span>
       <span class="skill-tag">Machine Learning</span>
       <span class="skill-tag">Predictive Analytics</span>
@@ -1335,118 +346,88 @@
       <span class="skill-tag">Oracle HFM</span>
       <span class="skill-tag">SAP S/4HANA</span>
       <span class="skill-tag">VBA Automation</span>
-      <span class="skill-tag">LLM Integration (ChatGPT / Claude)</span>
+      <span class="skill-tag">LLM Integration</span>
       <span class="skill-tag">AI-Enabled FP&A</span>
-      <span class="skill-tag">Process Automation</span>
-      <span class="skill-tag">Prompt Engineering</span>
     </div>
-
-  </div>
-</section>
-
-<!-- VIDEO -->
-<section id="video">
-  <div class="section-inner">
-    <p class="section-label fade-up">03 — Introduction</p>
-    <h2 class="section-title fade-up">Hear it <em>from me</em></h2>
-    <div class="section-divider fade-up"></div>
-    <div class="video-placeholder fade-up" onclick="alert('Add your video URL here — replace this placeholder with a YouTube embed or uploaded video link.')">
-      <div class="play-btn">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-          <polygon points="5,3 19,12 5,21"/>
-        </svg>
-      </div>
-      <p class="video-caption">Watch: My Professional Journey</p>
-    </div>
-    <p class="video-note">📎 To add your video: upload to YouTube or Google Drive, then replace this placeholder with an embed.</p>
   </div>
 </section>
 
 <!-- EXPERIENCE -->
 <section id="experience">
   <div class="section-inner">
-    <p class="section-label fade-up">04 — Experience</p>
+    <p class="section-label fade-up">03 — Experience</p>
     <h2 class="section-title fade-up">15 years of <em>impact</em></h2>
     <div class="section-divider fade-up"></div>
+    <div class="experience-intro fade-up">I built my career across <strong>Tunisia, Libya and Morocco</strong>, reporting to and working closely with <strong>corporate headquarters in France</strong>. That experience — international in scope, demanding in standards — shaped everything I do today across FP&A, business partnering, ERP implementation and finance transformation.</div>
     <div class="timeline">
 
-      <!-- ORANGE BUSINESS: Finance Manager 2022–2024 -->
       <div class="timeline-item fade-up">
         <div class="timeline-dot"></div>
         <div class="timeline-period">2022 – 2024</div>
-        <div class="timeline-company">Orange Business — Business & Decision / Sofrecom · Tunisia</div>
-        <div class="timeline-role">Finance Manager — Corporate Restructuring & Operating Model Redesign</div>
+        <div class="timeline-company">Orange Business — Business & Decision / Sofrecom · Tunisia & Morocco · Reporting to Corporate France</div>
+        <div class="timeline-role">Finance Manager — Corporate Restructuring & Operating Model</div>
         <ul class="timeline-bullets">
-          <li>Promoted to Finance Manager to lead the full corporate restructuring of both Orange Group subsidiaries — sole internal point of contact coordinating Big 4 firms (KPMG, Mazars) and corporate legal counsel simultaneously.</li>
-          <li>Delivered the <em>fonds de commerce</em> transfer from Business & Decision to Sofrecom — managing all legal, regulatory and financial obligations through to clean close. Transferred 60 FTEs with zero operational disruption.</li>
-          <li>Designed the future-state <strong>Target Operating Model</strong> — including centralisation strategy, outsourcing decisions and service delivery optimisation.</li>
-          <li>Managed executive stakeholders (GM, CFO, Corporate France) through structured transformation governance and programme reporting. Reported directly to Corporate France.</li>
+          <li>Promoted to lead the full corporate restructuring of two Orange Group entities — <strong>sole internal point of contact</strong> between the business, Corporate France, and Big 4 partners (KPMG, Mazars).</li>
+          <li>Delivered the legal and financial transfer from Business & Decision to Sofrecom — <strong>60 employees transferred</strong> with zero operational disruption.</li>
+          <li>Designed the future-state operating model — centralisation strategy, outsourcing decisions — reporting progress directly to the GM and CFO France.</li>
         </ul>
       </div>
 
-      <!-- ORANGE BUSINESS: Senior Controller 2020–2022 -->
       <div class="timeline-item fade-up">
         <div class="timeline-dot"></div>
         <div class="timeline-period">2020 – 2022</div>
-        <div class="timeline-company">Orange Business — Business & Decision · Tunisia</div>
-        <div class="timeline-role">Senior Controller — Financial Controlling & ERP Implementation</div>
+        <div class="timeline-company">Orange Business — Business & Decision · Tunisia · Reporting to CFO France</div>
+        <div class="timeline-role">Senior Controller — Finance Operations & ERP Implementation</div>
         <ul class="timeline-bullets">
-          <li>Recruited by Business & Decision following redundancy in 2020. Owned the full month-end close cycle as second to the CFO — accruals, payments, balance sheet reconciliations, revenue recognition and management reporting.</li>
-          <li>Delivered <strong>Sage 100 ERP full lifecycle implementation</strong> as Finance Functional Owner — business requirements, process mapping, gap analysis, data migration, training, SOPs and governance frameworks.</li>
-          <li>Reviewed the accounting function and designed its outsourcing to Mazars — optimising the operating model ahead of the restructuring phase.</li>
-          <li>Hired and developed a finance trainee, providing structured coaching across controlling, closing and reporting tasks.</li>
+          <li>Second to the CFO — owned the full monthly close cycle, management reporting, balance sheet reconciliations and treasury.</li>
+          <li>Led the <strong>Sage 100 ERP implementation</strong> end-to-end as Finance Functional Owner — requirements, process mapping, user training and go-live.</li>
+          <li>Designed outsourcing of the accounting function to Mazars, reducing costs ahead of the restructuring phase.</li>
         </ul>
       </div>
 
-      <!-- SANOFI: Head of Controlling MCO 2017–2020 -->
       <div class="timeline-item fade-up">
         <div class="timeline-dot"></div>
         <div class="timeline-period">2017 – 2020</div>
-        <div class="timeline-company">Sanofi · MCO Region (Tunisia, Libya, Morocco + subsidiaries & partners across Jordan, UAE)</div>
-        <div class="timeline-role">Head of Controlling — Finance Transformation & Operating Model Deployment</div>
+        <div class="timeline-company">Sanofi · MCO Region — Tunisia, Libya, Morocco · Reporting to CFO & Corporate France</div>
+        <div class="timeline-role">Head of Controlling — FP&A, Business Partnering & Finance Transformation</div>
         <ul class="timeline-bullets">
-          <li>Led all day-to-day finance operations across the <strong>MCO region — Tunisia, Libya, Morocco</strong> as core entities, plus subsidiaries and global pharma partners operating across Jordan, UAE and other markets — monthly close, P&L, treasury, management reporting for CFO and ExCo. Structured the controlling team into dedicated FBP and FP&A streams.</li>
-          <li>Headed the <strong>Pricing department</strong>, acting as the cross-functional bridge between Finance, Market Access, and Strategy (represented by the General Manager) — translating commercial objectives into compliant, profitable pricing decisions.</li>
-          <li>Deployed and adapted the Group <strong>Target Operating Model</strong> locally across the MCO region — key actor across A2R, P2P, C2C process streams. Built and presented the local transformation business case to CFO and Executive Committee.</li>
-          <li>Delivered a <strong>6-day reduction in monthly reporting cycle</strong> through SAP automation and a VBA self-service portal enabling 80+ process owners to access real-time performance data.</li>
-          <li>Acted as <strong>Finance Key User (FI/CO)</strong> in the SAP S/4HANA migration across 3 entities — UAT, process validation and go-live stabilisation.</li>
+          <li>Led all finance operations across MCO — monthly close, P&L, budgeting, forecasting and management reporting across three countries for CFO and ExCo.</li>
+          <li>Headed the <strong>Pricing department</strong> — working between Finance, Market Access and the General Manager on pricing strategy and commercial decisions.</li>
+          <li>Deployed Group Target Operating Model locally — reduced monthly reporting cycle by <strong>6 days</strong> through SAP automation and built a self-service analytics portal for 80+ managers.</li>
+          <li>Finance Key User in the <strong>SAP S/4HANA migration</strong> across 3 entities — UAT, process validation and go-live support.</li>
         </ul>
       </div>
 
-      <!-- SANOFI: Senior Financial Controller Libya 2013–2016 -->
       <div class="timeline-item fade-up">
         <div class="timeline-dot"></div>
         <div class="timeline-period">2013 – 2016</div>
-        <div class="timeline-company">Sanofi · Tunisia / Libya</div>
-        <div class="timeline-role">Senior Financial Controller — Libya Operations</div>
+        <div class="timeline-company">Sanofi · Tunisia & Libya · Reporting to Regional CFO (Corporate France)</div>
+        <div class="timeline-role">Senior Financial Controller — Libya Market</div>
         <ul class="timeline-bullets">
-          <li>Rehired by Sanofi at senior level. <strong>Established full finance operations from inception</strong> for a €20M greenfield market — management accounting, financial close, AP/AR, cost control and regulatory reporting with no prior infrastructure.</li>
-          <li>Acted as client-side lead (MOA) for <strong>IBM Cognos TM1 implementation</strong> — 120-user integrated planning platform across Finance, Supply Chain and Operations. Reduced budget cycle from 3 months to 3 weeks.</li>
-          <li>Built the client relationship with Business & Decision (integrator) that led to their direct recruitment of me in 2020.</li>
+          <li>Built the entire finance function for the Libyan market from scratch — management accounting, monthly close, AP/AR, cost control and regulatory reporting.</li>
+          <li>Led the <strong>IBM Cognos TM1 implementation</strong> as client-side project owner (MOA) — 120 users across Finance, Supply Chain and Operations. Cut budget cycle from <strong>3 months to 3 weeks</strong>.</li>
         </ul>
       </div>
 
-      <!-- OPALIA PHARMA 2011–2013 -->
       <div class="timeline-item fade-up">
         <div class="timeline-dot"></div>
         <div class="timeline-period">2011 – 2013</div>
         <div class="timeline-company">Opalia Pharma · Recordati Group · Tunisia</div>
         <div class="timeline-role">Budget & Management Accounting Manager</div>
         <ul class="timeline-bullets">
-          <li>Redesigned the management accounting framework — improving margin visibility, cost modelling and decision support for commercial and operational leadership.</li>
-          <li>Acted as Finance Business Partner to commercial and operational teams on pricing strategy and profitability analysis.</li>
+          <li>Redesigned the management accounting framework — improving margin visibility and cost analysis for commercial and operational leadership.</li>
+          <li>Finance Business Partner on pricing and profitability — built the reputation that led Sanofi to rehire at senior level in 2013.</li>
         </ul>
       </div>
 
-      <!-- SANOFI: First tenure 2009–2011 -->
       <div class="timeline-item fade-up">
         <div class="timeline-dot"></div>
         <div class="timeline-period">2009 – 2011</div>
         <div class="timeline-company">Sanofi · Tunisia</div>
         <div class="timeline-role">Financial Controller</div>
         <ul class="timeline-bullets">
-          <li>First Sanofi tenure — delivered financial reporting, cost analysis and performance monitoring across Tunisian commercial operations.</li>
-          <li>Foundation of the relationship and reputation that led to rehire at senior level in 2013.</li>
+          <li>First Sanofi tenure — financial reporting, cost analysis and performance monitoring across Tunisian commercial operations.</li>
+          <li>Built the foundation that led to rehire at senior level two years later.</li>
         </ul>
       </div>
 
@@ -1457,340 +438,132 @@
 <!-- WORK IN PRACTICE -->
 <section id="work">
   <div class="section-inner">
-    <p class="section-label fade-up">05 — Work in Practice</p>
+    <p class="section-label fade-up">04 — Work in Practice</p>
     <h2 class="section-title fade-up">Real work, <em>real impact</em></h2>
     <div class="section-divider fade-up"></div>
 
-    <!-- ── CASE STUDY 1: GSF MONITORING ── -->
-    <div class="case-study">
+    <div class="case-study fade-up">
       <div class="case-header">
         <div>
-          <span class="case-tag">🏥 Pharmaceutical</span>
-          <span class="case-tag">📊 Finance Controlling</span>
-          <span class="case-tag">⚙️ EPM / Excel</span>
+          <span class="case-tag">🏥 Pharmaceutical</span><span class="case-tag">📊 Finance Controlling</span><span class="case-tag">⚙️ EPM / Excel</span>
           <h3 class="case-title">GSF OpEx <em>Monitoring Tool</em></h3>
           <div class="case-org">Sanofi · MCO Region · Tunisia — 2017–2019</div>
         </div>
         <div class="case-meta-pills">
-          <div class="meta-pill">15 GSF Functions</div>
-          <div class="meta-pill">3 Countries</div>
-          <div class="meta-pill">€167M Scope</div>
-          <div class="meta-pill">16 Controllers</div>
+          <div class="meta-pill">15 GSF Functions</div><div class="meta-pill">3 Countries</div>
+          <div class="meta-pill">€167M Scope</div><div class="meta-pill">16 Controllers</div>
         </div>
       </div>
-
       <div class="case-body">
         <div class="case-narrative">
-          <p>As Head of Controlling for Sanofi's MCO region, one of my early priorities was to answer a question the CFO asked every month: <strong>"Where exactly are we losing ground against forecast — and who owns it?"</strong></p>
-          <p>The existing reporting process relied on manual HFM extracts reconciled in individual Excel files by each function. There was no consolidated view, no accountability by function head, and no early warning system. By the time variances were visible at ExCo level, it was too late to act.</p>
-          <p>I designed and built the <strong>GSF Monitoring Tool</strong> — a multi-entity OpEx tracking system covering all 15 Global Support Functions across Tunisia, Libya and Morocco. Each function controller received access to their own module only, with a live HFM feed populating Budget (B19), Forecast (F1) and Actuals (A19) at the cost-nature level — 50+ cost codes tracked per function, per month.</p>
-          <p>The tool was the operational backbone of our <strong>Smart Spending initiative</strong> launched in Q1 2019, when the Executive Committee called for flat OpEx across 2019–2021. Without this monitoring layer, the savings action plan would have had no teeth.</p>
+          <p>As Head of Controlling for the MCO region, one of my early priorities was to answer a question the CFO asked every month: <strong>"Where exactly are we losing ground against forecast — and who owns it?"</strong></p>
+          <p>The existing process relied on manual HFM extracts in individual Excel files. No consolidated view, no accountability by function head, no early warning. By the time variances were visible at ExCo level, it was too late to act.</p>
+          <p>I designed and built the <strong>GSF Monitoring Tool</strong> — a multi-entity OpEx tracking system covering all 15 Global Support Functions across Tunisia, Libya and Morocco, with live HFM data feeds populating Budget, Forecast and Actuals at cost-nature level.</p>
+          <p>The tool became the backbone of the <strong>Smart Spending initiative</strong> launched in Q1 2019 — flat OpEx 2019–2021. Without this monitoring layer, the savings plan would have had no teeth.</p>
         </div>
-
         <div class="case-how">
           <div class="case-how-title">How & Why I Built It</div>
           <div class="how-steps">
-            <div class="how-step">
-              <div class="how-step-num">01</div>
-              <div class="how-step-text">
-                <strong>Problem diagnosis</strong>
-                Variance reporting arrived 15+ days after month-end. No function-level ownership meant overruns were discovered too late. CFO escalations were reactive, not preventive.
-              </div>
-            </div>
-            <div class="how-step">
-              <div class="how-step-num">02</div>
-              <div class="how-step-text">
-                <strong>Architecture decision</strong>
-                TM1/EPM rollout was 18 months away. I needed a solution in weeks. I designed a VBA-governed Excel workbook with HFM CUBE data feeds — giving EPM-like consolidation within the existing tech stack.
-              </div>
-            </div>
-            <div class="how-step">
-              <div class="how-step-num">03</div>
-              <div class="how-step-text">
-                <strong>Governance layer</strong>
-                Built a role-based login system: each of the 16 function controllers could only access their own sheet. Admin view for CFO/Head of Controlling. This enforced accountability and data ownership.
-              </div>
-            </div>
-            <div class="how-step">
-              <div class="how-step-num">04</div>
-              <div class="how-step-text">
-                <strong>Full chart of accounts</strong>
-                Mapped all 50+ Sanofi cost nature codes (AA10 through ZD99) per function — from salaries and vehicle expenses to ITS depreciation and interco reinvoicing. Nothing lumped or hidden.
-              </div>
-            </div>
-            <div class="how-step">
-              <div class="how-step-num">05</div>
-              <div class="how-step-text">
-                <strong>Smart Spending backbone</strong>
-                The tool became the data source for the Q1 2019 ExCo call to action: -30% T&E, -50% training, -50% consulting, flat OpEx 2019–2021. Every savings target was tracked live against this tool.
-              </div>
-            </div>
-            <div class="how-step">
-              <div class="how-step-num">06</div>
-              <div class="how-step-text">
-                <strong>Path to EPM</strong>
-                This tool exposed exactly why a proper EPM was needed: no drill-through, fragile VBA, plaintext passwords. I used its limitations to build the business case for IBM Cognos TM1 — which I then led as client-side MOA.
-              </div>
-            </div>
+            <div class="how-step"><div class="how-step-num">01</div><div class="how-step-text"><strong>Problem diagnosis</strong>Variance reporting arrived 15+ days after month-end. No function-level ownership meant overruns were discovered too late.</div></div>
+            <div class="how-step"><div class="how-step-num">02</div><div class="how-step-text"><strong>Architecture decision</strong>TM1 rollout was 18 months away. I needed a solution in weeks — VBA-governed Excel with HFM CUBE feeds gave EPM-like consolidation within the existing stack.</div></div>
+            <div class="how-step"><div class="how-step-num">03</div><div class="how-step-text"><strong>Governance layer</strong>Role-based login: each of 16 controllers could only access their own sheet. Admin view for CFO. Enforced accountability and data ownership.</div></div>
+            <div class="how-step"><div class="how-step-num">04</div><div class="how-step-text"><strong>Path to EPM</strong>This tool exposed exactly why TM1 was needed. I used its limitations to build the business case — and then led TM1 as client-side MOA.</div></div>
           </div>
         </div>
       </div>
-
       <div class="case-outcomes">
-        <div class="outcome-card">
-          <div class="outcome-num">6</div>
-          <div class="outcome-label">Days cut from monthly reporting cycle</div>
-        </div>
-        <div class="outcome-card">
-          <div class="outcome-num">15</div>
-          <div class="outcome-label">GSF functions monitored in real time</div>
-        </div>
-        <div class="outcome-card">
-          <div class="outcome-num">€167M</div>
-          <div class="outcome-label">OpEx scope tracked across MCO region</div>
-        </div>
-        <div class="outcome-card">
-          <div class="outcome-num">−75%</div>
-          <div class="outcome-label">Budget cycle reduction after TM1 (successor)</div>
-        </div>
+        <div class="outcome-card"><div class="outcome-num">6</div><div class="outcome-label">Days cut from monthly reporting cycle</div></div>
+        <div class="outcome-card"><div class="outcome-num">15</div><div class="outcome-label">GSF functions monitored in real time</div></div>
+        <div class="outcome-card"><div class="outcome-num">€167M</div><div class="outcome-label">OpEx scope tracked across MCO</div></div>
+        <div class="outcome-card"><div class="outcome-num">−75%</div><div class="outcome-label">Budget cycle after TM1 successor</div></div>
       </div>
-
       <div style="margin-bottom:1rem">
-        <div class="case-how-title" style="font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--amber);margin-bottom:0.8rem">Tools & Technologies Used</div>
-        <div class="case-tools">
-          <span class="tool-tag">SAP HFM (Oracle)</span>
-          <span class="tool-tag">Excel / VBA</span>
-          <span class="tool-tag">Sanofi Global Chart of Accounts</span>
-          <span class="tool-tag">IBM Cognos TM1 (successor)</span>
-          <span class="tool-tag">SAP FI/CO</span>
-          <span class="tool-tag">CUBE data feed</span>
-          <span class="tool-tag">Role-based access control</span>
-          <span class="tool-tag">YTD / YTG / Full Year logic</span>
-          <span class="tool-tag">Python (portfolio rebuild)</span>
-          <span class="tool-tag">Chart.js (visualisation)</span>
-        </div>
+        <div class="case-how-title" style="font-family:'DM Mono',monospace;font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--amber);margin-bottom:0.7rem">Tools Used</div>
+        <span class="tool-tag">SAP HFM (Oracle)</span><span class="tool-tag">Excel / VBA</span><span class="tool-tag">IBM Cognos TM1</span><span class="tool-tag">SAP FI/CO</span><span class="tool-tag">CUBE data feed</span><span class="tool-tag">Role-based access</span>
       </div>
-
-      <!-- EMBEDDED DASHBOARD -->
       <div class="dashboard-embed">
         <div class="embed-header">
-          <div class="embed-dot-row">
-            <div class="embed-dot red"></div>
-            <div class="embed-dot yellow"></div>
-            <div class="embed-dot green"></div>
-          </div>
+          <div class="embed-dot-row"><div class="embed-dot" style="background:#d4605a"></div><div class="embed-dot" style="background:#d4c04a"></div><div class="embed-dot" style="background:#5db87a"></div></div>
           <div class="embed-title">GSF OpEx Monitoring Dashboard — MCO Region · FY2019 (Anonymised)</div>
-          <div style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--text-dim)">Interactive ↗</div>
+          <a href="https://samibh1981-png.github.io/Portfolio/gsf-dashboard.html" target="_blank" style="font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--amber);text-decoration:none">Open ↗</a>
         </div>
-        <div style="padding:2.5rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;min-height:220px;background:var(--bg);text-align:center;">
-          <div style="font-size:2rem;">📊</div>
-          <div>
-            <div style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--white);margin-bottom:0.5rem;">Interactive GSF OpEx Dashboard</div>
-            <div style="font-size:0.82rem;color:var(--text-muted);max-width:480px;line-height:1.7;">15 GSF functions · Budget vs Forecast vs Actual · FY2019 · MCO Region · Fully anonymised</div>
-          </div>
-          <a href="gsf-dashboard.html" target="_blank" class="btn-primary" style="text-decoration:none;">Open Dashboard ↗</a>
-          <div style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--text-dim);letter-spacing:0.08em;">HOSTED SEPARATELY — see setup instructions below</div>
+        <div style="padding:2rem;text-align:center">
+          <div style="font-size:1.8rem;margin-bottom:0.8rem">📊</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--white);margin-bottom:0.4rem">Interactive GSF OpEx Dashboard</div>
+          <div style="font-size:0.78rem;color:var(--text-muted);margin-bottom:1.2rem">15 functions · Budget vs Forecast vs Actual · FY2019 · Anonymised</div>
+          <a href="https://samibh1981-png.github.io/Portfolio/gsf-dashboard.html" target="_blank" class="btn-primary">Open Dashboard ↗</a>
         </div>
       </div>
-      <div class="case-disclaimer">
-        ⚠ All data anonymised for portfolio use. Company name, employee identifiers, entity codes and financial figures have been replaced or scaled. Data patterns and proportions are preserved to reflect the real analytical work. Original: Sanofi MCO Region GSF Monitoring Tool, FY2019.
-      </div>
+      <div class="case-disclaimer">⚠ All data anonymised. Company name, identifiers and figures replaced or scaled. Patterns preserved to reflect real analytical work. Original: Sanofi MCO Region GSF Monitoring Tool, FY2019.</div>
     </div>
-    <!-- ── END CASE STUDY 1 ── -->
 
-    <!-- ── CASE STUDY 2: SMART SPENDING INITIATIVE ── -->
-    <div class="case-study">
+    <div class="case-study fade-up">
       <div class="case-header">
         <div>
-          <span class="case-tag">🎯 Strategic Finance</span>
-          <span class="case-tag">📉 Cost Transformation</span>
-          <span class="case-tag">👥 Change Management</span>
+          <span class="case-tag">🎯 Strategic Finance</span><span class="case-tag">📉 Cost Transformation</span>
           <h3 class="case-title">Smart Spending — <em>ExCo Call to Action</em></h3>
           <div class="case-org">Sanofi · MCO Region · Tunisia & Morocco — Q1 2019</div>
         </div>
         <div class="case-meta-pills">
-          <div class="meta-pill">Flat OpEx 2019–2021</div>
-          <div class="meta-pill">7 Spend Categories</div>
-          <div class="meta-pill">2 Countries</div>
-          <div class="meta-pill">ExCo Mandate</div>
+          <div class="meta-pill">Flat OpEx 2019–2021</div><div class="meta-pill">7 Categories</div><div class="meta-pill">ExCo Mandate</div>
         </div>
       </div>
-
       <div class="case-body">
         <div class="case-narrative">
-          <p>In early 2019, the Sanofi Executive Committee issued a direct call to action: <strong>achieve flat total OpEx across 2019, 2020 and 2021</strong> — absorbing personal cost inflation of +6% (Tunisia) and +2.5% (Morocco) through savings in all other spend categories.</p>
-          <p>I led the Controlling team's response: a full <strong>spend mapping exercise</strong> across all commercial and support functions in Tunisia and Morocco, covering both OpEx and non-OpEx. Seven priority categories were identified — T&E, Training, Consulting, FM, Car Fleet, Data/Market Research, and Agency costs.</p>
-          <p>For each category, I built a <strong>vendor-level action plan</strong>: renegotiating contracts (car fleet leases, Orange telecom tenders, FM suppliers), challenging purchasing behaviours (T&E -30%, Training -50%), and restructuring service models (outsourcing cleaning, catering, maintenance). The 2018 spend mapping became the baseline; the GSF monitoring tool became the live tracking layer.</p>
-          <p>The initiative required me to work simultaneously as <strong>Finance Business Partner, project manager, and change agent</strong> — presenting to the GM, challenging function heads on their spend, and keeping Corporate France informed through structured governance reporting.</p>
+          <p>In early 2019, the ExCo issued a direct call to action: <strong>achieve flat total OpEx across 2019, 2020 and 2021</strong> — absorbing personal cost inflation of +6% (Tunisia) and +2.5% (Morocco) through savings in all other categories.</p>
+          <p>I led a full <strong>spend mapping exercise</strong> across all commercial and support functions in Tunisia and Morocco, covering OpEx and non-OpEx. Seven priority categories identified — T&E, Training, Consulting, FM, Car Fleet, Data/Market Research, and Agency costs.</p>
+          <p>For each category I built a <strong>vendor-level action plan</strong>: renegotiating contracts, challenging purchasing behaviours, restructuring service models. The GSF monitoring tool became the live tracking layer.</p>
         </div>
-
         <div class="case-how">
-          <div class="case-how-title">Approach & Methodology</div>
+          <div class="case-how-title">Approach</div>
           <div class="how-steps">
-            <div class="how-step">
-              <div class="how-step-num">01</div>
-              <div class="how-step-text">
-                <strong>Full spend mapping</strong>
-                Mapped 100% of 2018 OpEx and Non-OpEx by BU (CEM, CHC, Vaccines, IA, GSF) and by category. Tunisia total: ~11.7M. Morocco total: ~29.4M.
-              </div>
-            </div>
-            <div class="how-step">
-              <div class="how-step-num">02</div>
-              <div class="how-step-text">
-                <strong>Category action plans</strong>
-                Developed vendor-specific plans for 7 categories. Each plan had a % target, a named vendor, a contract lever, and an owner. No category was left as "watch and see."
-              </div>
-            </div>
-            <div class="how-step">
-              <div class="how-step-num">03</div>
-              <div class="how-step-text">
-                <strong>3-year financial model</strong>
-                Built the flat OpEx model for Tunisia and Morocco: personal cost escalation offset against spend reductions, resulting in net flat total OpEx by 2021 — presented to CFO and GM.
-              </div>
-            </div>
-            <div class="how-step">
-              <div class="how-step-num">04</div>
-              <div class="how-step-text">
-                <strong>Monthly tracking</strong>
-                Integrated savings tracking into the GSF monitoring tool — every category had a live variance vs. target, reviewed in monthly Business Reviews with Corporate France.
-              </div>
-            </div>
+            <div class="how-step"><div class="how-step-num">01</div><div class="how-step-text"><strong>Full spend mapping</strong>Mapped 100% of 2018 OpEx and Non-OpEx by BU across Tunisia (~11.7M) and Morocco (~29.4M).</div></div>
+            <div class="how-step"><div class="how-step-num">02</div><div class="how-step-text"><strong>Category action plans</strong>Vendor-specific plans for 7 categories — each with a % target, named vendor, contract lever, and owner.</div></div>
+            <div class="how-step"><div class="how-step-num">03</div><div class="how-step-text"><strong>3-year financial model</strong>Built the flat OpEx model for Tunisia and Morocco — presented to CFO and GM. Approved and tracked monthly.</div></div>
           </div>
         </div>
       </div>
-
       <div class="case-outcomes">
-        <div class="outcome-card">
-          <div class="outcome-num">-30%</div>
-          <div class="outcome-label">T&E reduction target — Tunisia & Morocco</div>
-        </div>
-        <div class="outcome-card">
-          <div class="outcome-num">-50%</div>
-          <div class="outcome-label">Training & Consulting spend targets</div>
-        </div>
-        <div class="outcome-card">
-          <div class="outcome-num">−1.5M</div>
-          <div class="outcome-label">EUR savings targeted Morocco 2020–2021</div>
-        </div>
-        <div class="outcome-card">
-          <div class="outcome-num">Flat</div>
-          <div class="outcome-label">Total OpEx maintained 2019–2021</div>
-        </div>
-      </div>
-
-      <div>
-        <div class="case-how-title" style="font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--amber);margin-bottom:0.8rem">Skills Demonstrated</div>
-        <div class="case-tools">
-          <span class="tool-tag">Finance Business Partnering</span>
-          <span class="tool-tag">Spend Analytics</span>
-          <span class="tool-tag">Vendor Negotiation</span>
-          <span class="tool-tag">3-Year Financial Modelling</span>
-          <span class="tool-tag">Change Management</span>
-          <span class="tool-tag">Executive Presentation (CFO / GM)</span>
-          <span class="tool-tag">Category Management</span>
-          <span class="tool-tag">BPR — Buy Less / Buy Better / Buy Cheaper</span>
-          <span class="tool-tag">Governance Reporting</span>
-        </div>
+        <div class="outcome-card"><div class="outcome-num">−30%</div><div class="outcome-label">T&E reduction target</div></div>
+        <div class="outcome-card"><div class="outcome-num">−50%</div><div class="outcome-label">Training & Consulting</div></div>
+        <div class="outcome-card"><div class="outcome-num">−1.5M</div><div class="outcome-label">EUR savings targeted Morocco 2021</div></div>
+        <div class="outcome-card"><div class="outcome-num">Flat</div><div class="outcome-label">Total OpEx 2019–2021</div></div>
       </div>
     </div>
-    <!-- ── END CASE STUDY 2 ── -->
 
-    <!-- ── CASE STUDY 3: TM1 IMPLEMENTATION ── -->
-    <div class="case-study">
+    <div class="case-study fade-up">
       <div class="case-header">
         <div>
-          <span class="case-tag">🔧 EPM Implementation</span>
-          <span class="case-tag">📐 System Design</span>
-          <span class="case-tag">🚀 Finance Transformation</span>
+          <span class="case-tag">🔧 EPM Implementation</span><span class="case-tag">🚀 Finance Transformation</span>
           <h3 class="case-title">IBM Cognos TM1 — <em>From Excel to EPM</em></h3>
-          <div class="case-org">Sanofi · Libya Operations · Tunisia — 2013–2016</div>
+          <div class="case-org">Sanofi · Libya Operations — 2013–2016</div>
         </div>
         <div class="case-meta-pills">
-          <div class="meta-pill">120 Users</div>
-          <div class="meta-pill">€20M Market</div>
-          <div class="meta-pill">3 Months → 3 Weeks</div>
-          <div class="meta-pill">MOA Role</div>
+          <div class="meta-pill">120 Users</div><div class="meta-pill">€20M Market</div><div class="meta-pill">−75% Cycle Time</div>
         </div>
       </div>
-
       <div class="case-body">
         <div class="case-narrative">
-          <p>After establishing the full finance function for Sanofi's Libya operations from scratch — including building the management accounting framework, financial close, AP/AR and regulatory reporting with no prior infrastructure — the next challenge was <strong>transforming how the region planned and forecasted</strong>.</p>
-          <p>The annual budget cycle took <strong>3 months</strong>: manual Excel templates sent to 50+ cost centre managers, consolidated by hand, reconciled against SAP, then re-submitted. Every assumption change triggered a new round. The process consumed the entire controlling team for a quarter of the year.</p>
-          <p>I was appointed <strong>client-side project lead (MOA)</strong> for the IBM Cognos TM1 implementation — a 120-user integrated planning platform spanning Finance, Supply Chain and Operations. Business & Decision was the integrator. I owned the functional design, business requirements, data model validation, and UAT — ensuring TM1 was built to reflect how we actually worked, not just how the system vendor assumed we would.</p>
-          <p>The outcome: budget cycle reduced from <strong>3 months to 3 weeks</strong>. Driver-based planning replaced bottom-up manual entry. Automated workflows replaced email chains. The relationship built with Business & Decision on this project led directly to their recruiting me in 2020.</p>
+          <p>After building the full finance function for Libya from scratch, the next challenge was transforming how the region planned. The annual budget cycle took <strong>3 months</strong> — manual Excel templates sent to 50+ managers, consolidated by hand, reconciled against SAP.</p>
+          <p>I was appointed <strong>client-side project lead (MOA)</strong> for the IBM Cognos TM1 implementation — a 120-user integrated planning platform across Finance, Supply Chain and Operations. I owned functional design, business requirements, data model validation and UAT.</p>
+          <p>The relationship built with Business & Decision during this project led directly to their <strong>recruiting me in 2020</strong>.</p>
         </div>
-
         <div class="case-how">
-          <div class="case-how-title">My Role as MOA (Client-Side Lead)</div>
+          <div class="case-how-title">My Role as MOA</div>
           <div class="how-steps">
-            <div class="how-step">
-              <div class="how-step-num">01</div>
-              <div class="how-step-text">
-                <strong>Business requirements ownership</strong>
-                Translated finance team needs into functional specifications. Challenged the integrator where standard templates didn't fit Sanofi's planning logic.
-              </div>
-            </div>
-            <div class="how-step">
-              <div class="how-step-num">02</div>
-              <div class="how-step-text">
-                <strong>SAP data model alignment</strong>
-                Designed the TM1 data model to mirror SAP FI/CO architecture — eliminating reconciliation gaps between planning and actuals that had previously cost 2+ days per month.
-              </div>
-            </div>
-            <div class="how-step">
-              <div class="how-step-num">03</div>
-              <div class="how-step-text">
-                <strong>Driver-based planning design</strong>
-                Replaced line-by-line manual entry with driver logic: headcount × salary rate, volume × unit cost, etc. This meant a reforecast took hours, not weeks.
-              </div>
-            </div>
-            <div class="how-step">
-              <div class="how-step-num">04</div>
-              <div class="how-step-text">
-                <strong>UAT & change management</strong>
-                Led full UAT across Finance, Supply Chain and Operations. Ran adoption workshops. Became the internal escalation point post go-live.
-              </div>
-            </div>
+            <div class="how-step"><div class="how-step-num">01</div><div class="how-step-text"><strong>SAP data model alignment</strong>Designed TM1 data model to mirror SAP FI/CO architecture — eliminating reconciliation gaps that cost 2+ days per month.</div></div>
+            <div class="how-step"><div class="how-step-num">02</div><div class="how-step-text"><strong>Driver-based planning</strong>Replaced line-by-line entry with driver logic. A reforecast took hours, not weeks.</div></div>
+            <div class="how-step"><div class="how-step-num">03</div><div class="how-step-text"><strong>UAT & change management</strong>Led full UAT across 3 functions. Ran adoption workshops. Became the internal escalation point post go-live.</div></div>
           </div>
         </div>
       </div>
-
       <div class="case-outcomes">
-        <div class="outcome-card">
-          <div class="outcome-num">−75%</div>
-          <div class="outcome-label">Budget cycle time: 3 months → 3 weeks</div>
-        </div>
-        <div class="outcome-card">
-          <div class="outcome-num">120</div>
-          <div class="outcome-label">Users across Finance, Supply Chain & Ops</div>
-        </div>
-        <div class="outcome-card">
-          <div class="outcome-num">0</div>
-          <div class="outcome-label">SAP reconciliation gaps post go-live</div>
-        </div>
-        <div class="outcome-card">
-          <div class="outcome-num">2020</div>
-          <div class="outcome-label">Recruited by integrator (B&D) based on delivery</div>
-        </div>
-      </div>
-
-      <div>
-        <div class="case-how-title" style="font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--amber);margin-bottom:0.8rem">Tools & Skills</div>
-        <div class="case-tools">
-          <span class="tool-tag">IBM Cognos TM1</span>
-          <span class="tool-tag">SAP FI/CO</span>
-          <span class="tool-tag">EPM Implementation (MOA)</span>
-          <span class="tool-tag">Driver-Based Planning</span>
-          <span class="tool-tag">Data Model Design</span>
-          <span class="tool-tag">UAT Management</span>
-          <span class="tool-tag">Business Requirements</span>
-          <span class="tool-tag">Change Management</span>
-          <span class="tool-tag">Stakeholder Management</span>
-        </div>
+        <div class="outcome-card"><div class="outcome-num">−75%</div><div class="outcome-label">Budget cycle: 3 months → 3 weeks</div></div>
+        <div class="outcome-card"><div class="outcome-num">120</div><div class="outcome-label">Users across 3 functions</div></div>
+        <div class="outcome-card"><div class="outcome-num">0</div><div class="outcome-label">SAP reconciliation gaps</div></div>
+        <div class="outcome-card"><div class="outcome-num">2020</div><div class="outcome-label">Recruited by integrator B&D</div></div>
       </div>
     </div>
-    <!-- ── END CASE STUDY 3 ── -->
 
   </div>
 </section>
@@ -1798,85 +571,16 @@
 <!-- SKILLS -->
 <section id="skills">
   <div class="section-inner">
-    <p class="section-label fade-up">06 — Skills</p>
+    <p class="section-label fade-up">05 — Skills</p>
     <h2 class="section-title fade-up">Tools of the <em>trade</em></h2>
     <div class="section-divider fade-up"></div>
-    <div class="skills-grid">
-      <div class="skill-category">
-          <div class="skill-cat-title">AI & Finance Integration</div>
-          <div class="skill-tags">
-            <span class="skill-tag">AI-Enabled Finance Transformation</span>
-            <span class="skill-tag">LLM Integration (ChatGPT / Claude)</span>
-            <span class="skill-tag">AI Adoption & Change Management</span>
-            <span class="skill-tag">Prompt Engineering</span>
-            <span class="skill-tag">AI Roadmap Design</span>
-            <span class="skill-tag">Intelligent Process Automation</span>
-            <span class="skill-tag">Predictive Analytics (FP&A)</span>
-            <span class="skill-tag">Anomaly Detection</span>
-          </div>
-        </div>
-        <div class="skill-category">
-          <div class="skill-cat-title">Data & Analytics</div>
-          <div class="skill-tags">
-            <span class="skill-tag">Python · pandas · scikit-learn</span>
-            <span class="skill-tag">R / ggplot2</span>
-            <span class="skill-tag">SQL</span>
-            <span class="skill-tag">Machine Learning</span>
-            <span class="skill-tag">Power BI</span>
-            <span class="skill-tag">Data Visualisation</span>
-            <span class="skill-tag">Driver-Based Planning</span>
-          </div>
-        </div>
-        <div class="skill-category">
-          <div class="skill-cat-title">Finance Transformation & TOM</div>
-          <div class="skill-tags">
-            <span class="skill-tag">Finance Transformation</span>
-            <span class="skill-tag">Target Operating Model (TOM)</span>
-            <span class="skill-tag">GBS Design</span>
-            <span class="skill-tag">Finance Business Architecture</span>
-            <span class="skill-tag">Business Process Reengineering</span>
-            <span class="skill-tag">Operating Model Design</span>
-            <span class="skill-tag">Organisation Design</span>
-          </div>
-        </div>
-        <div class="skill-category">
-          <div class="skill-cat-title">ERP / EPM Systems</div>
-          <div class="skill-tags">
-            <span class="skill-tag">SAP FI/CO</span>
-            <span class="skill-tag">SAP S/4HANA (Key User)</span>
-            <span class="skill-tag">SAP TS4CO (In Progress)</span>
-            <span class="skill-tag">Oracle HFM</span>
-            <span class="skill-tag">IBM Cognos TM1</span>
-            <span class="skill-tag">Workday</span>
-            <span class="skill-tag">Sage 100 / X3</span>
-            <span class="skill-tag">VBA & Process Automation</span>
-          </div>
-        </div>
-        <div class="skill-category">
-          <div class="skill-cat-title">Finance Operations</div>
-          <div class="skill-tags">
-            <span class="skill-tag">R2R / A2R</span>
-            <span class="skill-tag">P2P</span>
-            <span class="skill-tag">O2C / C2C</span>
-            <span class="skill-tag">FP&A</span>
-            <span class="skill-tag">Finance Business Partnering</span>
-            <span class="skill-tag">Budgeting & Forecasting</span>
-            <span class="skill-tag">P&L Management</span>
-            <span class="skill-tag">Pricing Strategy</span>
-          </div>
-        </div>
-        <div class="skill-category">
-          <div class="skill-cat-title">Leadership & Languages</div>
-          <div class="skill-tags">
-            <span class="skill-tag">Change Management</span>
-            <span class="skill-tag">Stakeholder Management (C-Suite)</span>
-            <span class="skill-tag">Agile Delivery</span>
-            <span class="skill-tag">Team Development</span>
-            <span class="skill-tag">French — Native</span>
-            <span class="skill-tag">English — Professional</span>
-            <span class="skill-tag">Arabic — Native</span>
-          </div>
-        </div>
+    <div class="skills-grid fade-up">
+      <div class="skill-category"><div class="skill-cat-title">AI & Finance Integration</div><div class="skill-tags"><span class="skill-tag">AI-Enabled Finance Transformation</span><span class="skill-tag">LLM Integration</span><span class="skill-tag">AI Adoption & Change</span><span class="skill-tag">Prompt Engineering</span><span class="skill-tag">AI Roadmap Design</span><span class="skill-tag">Process Automation</span><span class="skill-tag">Predictive Analytics</span></div></div>
+      <div class="skill-category"><div class="skill-cat-title">Data & Analytics</div><div class="skill-tags"><span class="skill-tag">Python · pandas · scikit-learn</span><span class="skill-tag">R / ggplot2</span><span class="skill-tag">SQL</span><span class="skill-tag">Machine Learning</span><span class="skill-tag">Power BI</span><span class="skill-tag">Data Visualisation</span><span class="skill-tag">Driver-Based Planning</span></div></div>
+      <div class="skill-category"><div class="skill-cat-title">Finance Transformation</div><div class="skill-tags"><span class="skill-tag">Finance Transformation</span><span class="skill-tag">Target Operating Model</span><span class="skill-tag">GBS Design</span><span class="skill-tag">Business Process Reengineering</span><span class="skill-tag">Operating Model Design</span><span class="skill-tag">Organisation Design</span></div></div>
+      <div class="skill-category"><div class="skill-cat-title">ERP / EPM Systems</div><div class="skill-tags"><span class="skill-tag">SAP FI/CO</span><span class="skill-tag">SAP S/4HANA (Key User)</span><span class="skill-tag">Oracle HFM</span><span class="skill-tag">IBM Cognos TM1</span><span class="skill-tag">Workday</span><span class="skill-tag">Sage 100 / X3</span><span class="skill-tag">VBA & Automation</span></div></div>
+      <div class="skill-category"><div class="skill-cat-title">Finance Operations</div><div class="skill-tags"><span class="skill-tag">FP&A</span><span class="skill-tag">R2R / A2R</span><span class="skill-tag">P2P</span><span class="skill-tag">O2C</span><span class="skill-tag">Finance Business Partnering</span><span class="skill-tag">Budgeting & Forecasting</span><span class="skill-tag">P&L Management</span><span class="skill-tag">Pricing Strategy</span></div></div>
+      <div class="skill-category"><div class="skill-cat-title">Leadership & Languages</div><div class="skill-tags"><span class="skill-tag">Change Management</span><span class="skill-tag">Stakeholder Management (C-Suite)</span><span class="skill-tag">Agile Delivery</span><span class="skill-tag">Team Development</span><span class="skill-tag">French — Native</span><span class="skill-tag">English — Professional</span><span class="skill-tag">Arabic — Native</span></div></div>
     </div>
   </div>
 </section>
@@ -1884,40 +588,13 @@
 <!-- EDUCATION -->
 <section id="education">
   <div class="section-inner">
-    <p class="section-label fade-up">07 — Education</p>
+    <p class="section-label fade-up">06 — Education</p>
     <h2 class="section-title fade-up">Building the <em>foundation</em></h2>
     <div class="section-divider fade-up"></div>
-    <div class="edu-grid">
-      <div class="edu-card">
-        <div class="edu-year">2024 – 2025</div>
-        <div class="edu-degree">MSc in Management &amp; Business Analytics</div>
-        <div class="edu-institution">Oxford Brookes University — UK · Merit</div>
-        <div class="edu-desc">Business Transformation, Data Analytics, Predictive Analytics, Machine Learning for Business, Financial Analytics. Capstone: leveraging analytics to optimise financial planning and corporate performance.</div>
-      </div>
-      <div class="edu-card">
-        <div class="edu-year">Completed 2024</div>
-        <div class="edu-degree">CMI Level 7 — Strategic Management &amp; Leadership</div>
-        <div class="edu-institution">Chartered Management Institute — UK</div>
-        <div class="edu-desc">Senior-level professional qualification focused on strategic leadership, organisational change, and executive decision-making. Equivalent to postgraduate study level.</div>
-      </div>
-      <div class="edu-card">
-        <div class="edu-year">In Progress</div>
-        <div class="edu-degree">CIMA (CGMA)</div>
-        <div class="edu-institution">Chartered Institute of Management Accountants</div>
-        <div class="edu-desc">Eligibility confirmed — registration in progress. The globally recognised professional qualification in management accounting and finance leadership.</div>
-      </div>
-      <div class="edu-card">
-        <div class="edu-year">In Progress</div>
-        <div class="edu-degree">SAP Certification — TS4CO</div>
-        <div class="edu-institution">SAP — Controlling in SAP S/4HANA</div>
-        <div class="edu-desc">Professional certification in SAP S/4HANA Controlling (FI/CO). Builds on hands-on Key User experience from the Sanofi S/4HANA migration across 3 entities.</div>
-      </div>
-      <div class="edu-card">
-        <div class="edu-year">2004 – 2009</div>
-        <div class="edu-degree">Bachelor's Degree in Management — Finance</div>
-        <div class="edu-institution">Faculty of Economics &amp; Management, Tunis</div>
-        <div class="edu-desc">Foundation in financial principles, corporate accounting, economic analysis and management control. Dissertation: Financial Risk Management in Emerging Markets.</div>
-      </div>
+    <div class="edu-grid fade-up">
+      <div class="edu-card"><div class="edu-year">2024 – 2025</div><div class="edu-degree">MSc in Management & Business Analytics</div><div class="edu-institution">Oxford Brookes University — UK · Merit</div><div class="edu-desc">Business Transformation, Data Analytics, Predictive Analytics, Machine Learning for Business, Financial Analytics. Capstone: AI-enhanced financial planning and corporate performance.</div></div>
+      <div class="edu-card"><div class="edu-year">Completed 2024</div><div class="edu-degree">CMI Level 7 — Strategic Management & Leadership</div><div class="edu-institution">Chartered Management Institute — UK</div><div class="edu-desc">Senior-level qualification focused on strategic leadership, organisational change, and executive decision-making. Equivalent to postgraduate study level.</div></div>
+      <div class="edu-card"><div class="edu-year">2004 – 2009</div><div class="edu-degree">Bachelor's Degree in Management — Finance</div><div class="edu-institution">Faculty of Economics & Management, Tunis</div><div class="edu-desc">Foundation in financial principles, corporate accounting, economic analysis and management control. Dissertation: Financial Risk Management in Emerging Markets.</div></div>
     </div>
   </div>
 </section>
@@ -1925,49 +602,20 @@
 <!-- VOLUNTEERING -->
 <section id="volunteering">
   <div class="section-inner">
-    <p class="section-label fade-up">08 — Volunteering</p>
+    <p class="section-label fade-up">07 — Volunteering</p>
     <h2 class="section-title fade-up">Leading with <em>purpose</em></h2>
     <div class="section-divider fade-up"></div>
-    <div class="vol-grid">
-      <div class="vol-body fade-up">
-        <div class="vol-quote">
-          <p>"My sister's commitment to environmental justice in the Gulf of Gabès showed me that expertise means nothing unless it's put in service of something larger."</p>
-        </div>
-        <p>Inspired by my sister's work with Greenpeace in the 2000s — particularly tackling the severe industrial pollution crisis in the Gulf of Gabès, one of Africa's most damaged marine areas — I've maintained an active commitment to environmental causes throughout my career.</p>
-        <p>I believe that responsible leadership extends beyond the boardroom. Environmental stewardship and community engagement are not peripheral to professional life — they are central to it.</p>
+    <div class="vol-grid fade-up">
+      <div class="vol-body">
+        <div class="vol-quote"><p>"My sister's commitment to environmental justice in the Gulf of Gabès showed me that expertise means nothing unless it's put in service of something larger."</p></div>
+        <p>Inspired by my sister's work with Greenpeace in the 2000s — tackling the severe industrial pollution crisis in the Gulf of Gabès — I've maintained an active commitment to environmental causes throughout my career.</p>
+        <p>I believe responsible leadership extends beyond the boardroom. Environmental stewardship and community engagement are central to professional life, not peripheral to it.</p>
       </div>
-      <div class="fade-up">
-        <ul class="vol-activities">
-          <li>
-            <span class="vol-badge">2024–25</span>
-            <div>
-              <strong>UK WWF — Volunteer</strong>
-              <p>Supported community engagement events and advocacy campaigns in the Oxford/London area. Contributed to awareness-raising efforts for wildlife and habitat protection.</p>
-            </div>
-          </li>
-          <li>
-            <span class="vol-badge">Ongoing</span>
-            <div>
-              <strong>Plant 1 Tree Campaign</strong>
-              <p>Active participant in conservation campaigns focused on reforestation and biodiversity awareness across North Africa and the UK.</p>
-            </div>
-          </li>
-          <li>
-            <span class="vol-badge">Ongoing</span>
-            <div>
-              <strong>Save 1 Generation Campaign</strong>
-              <p>Contributed to public awareness initiatives focused on protecting endangered wildlife and educating communities on habitat preservation.</p>
-            </div>
-          </li>
-          <li>
-            <span class="vol-badge">Values</span>
-            <div>
-              <strong>Environmental Commitment</strong>
-              <p>My volunteering reflects the same values I bring to the workplace: long-term thinking, community responsibility, and the courage to act on what matters.</p>
-            </div>
-          </li>
-        </ul>
-      </div>
+      <ul class="vol-activities">
+        <li><span class="vol-badge">2024–25</span><div><strong>UK WWF — Volunteer</strong><p>Community engagement events and advocacy campaigns in the Oxford area. Awareness-raising for wildlife and habitat protection.</p></div></li>
+        <li><span class="vol-badge">Ongoing</span><div><strong>Plant 1 Tree Campaign</strong><p>Conservation campaigns focused on reforestation and biodiversity across North Africa and the UK.</p></div></li>
+        <li><span class="vol-badge">Ongoing</span><div><strong>Save 1 Generation Campaign</strong><p>Public awareness for endangered wildlife and habitat preservation education.</p></div></li>
+      </ul>
     </div>
   </div>
 </section>
@@ -1977,30 +625,21 @@
   <div class="contact-inner">
     <div class="fade-up">
       <h2 class="contact-heading">Let's build something <em>together</em></h2>
-      <p class="contact-sub">Whether you're looking for a Finance Transformation partner, want to discuss a consulting opportunity, or simply want to connect — I'd love to hear from you.</p>
+      <p class="contact-sub">Based in Oxford, UK. 15 years across Tunisia, Libya and Morocco — working with corporate France. Open to hybrid and on-site opportunities across the UK and Europe.</p>
       <a href="mailto:samibenhamida2@gmail.com" class="btn-primary">Send me an email</a>
     </div>
     <div class="contact-links fade-up">
       <a href="https://www.linkedin.com/in/sam-ben-hamida" target="_blank" class="contact-link">
         <div class="contact-link-icon">in</div>
-        <div>
-          <span class="contact-link-label">LinkedIn</span>
-          <span class="contact-link-val">sam-ben-hamida</span>
-        </div>
+        <div><span class="contact-link-label">LinkedIn</span><span class="contact-link-val">sam-ben-hamida</span></div>
       </a>
       <a href="mailto:samibenhamida2@gmail.com" class="contact-link">
         <div class="contact-link-icon">✉</div>
-        <div>
-          <span class="contact-link-label">Email</span>
-          <span class="contact-link-val">samibenhamida2@gmail.com</span>
-        </div>
+        <div><span class="contact-link-label">Email</span><span class="contact-link-val">samibenhamida2@gmail.com</span></div>
       </a>
       <a href="https://www.instagram.com/sam_benhmida" target="_blank" class="contact-link">
         <div class="contact-link-icon">📷</div>
-        <div>
-          <span class="contact-link-label">Instagram</span>
-          <span class="contact-link-val">sam_benhmida</span>
-        </div>
+        <div><span class="contact-link-label">Instagram</span><span class="contact-link-val">sam_benhmida</span></div>
       </a>
     </div>
   </div>
@@ -2012,42 +651,18 @@
 </footer>
 
 <script>
-// ── Scroll animations ─────────────────────────────────────────────
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
-
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); }});
+}, {threshold:0.07, rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-// ── Nav highlight on scroll ───────────────────────────────────────
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
-  navLinks.forEach(a => {
-    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--amber)' : '';
-  });
-});
-</script>
-</body>
-</html>
-
-// ── Nav highlight on scroll ───────────────────────────────────────
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
-  navLinks.forEach(a => {
-    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--amber)' : '';
-  });
-});
+  let cur = '';
+  sections.forEach(s => { if(window.scrollY >= s.offsetTop - 130) cur = s.id; });
+  navLinks.forEach(a => { a.style.color = a.getAttribute('href')==='#'+cur ? 'var(--amber)' : ''; });
+}, {passive:true});
 </script>
 </body>
 </html>
